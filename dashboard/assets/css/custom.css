@@ -1,0 +1,13 @@
+/******************************************************************
+Company Name: HTMLEXPERTS
+Author: archit@htmlexperts.co.in
+
+Stylesheet: Main Stylesheet for SENTADATA DASHBOARD
+******************************************************************/
+
+.block{display: block!important;}
+.navbar-brand>img {
+  display: block;
+  width: 83%;
+  margin-top: -10px;
+}
