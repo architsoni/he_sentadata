@@ -1,0 +1,205 @@
+<div id="content" class="content">
+<!-- begin breadcrumb -->
+<ol class="breadcrumb pull-right">
+    <li><a href="javascript:;">Home</a></li>
+    <li class="active">Dashboard</li>
+</ol>
+<!-- end breadcrumb -->
+<!-- begin page-header -->
+<h1 class="page-header">Dashboard</h1>
+<!-- end page-header -->
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-green">
+            <div class="stats-icon"><i class="fa fa-mobile"></i></div>
+            <div class="stats-info">
+                <h4>REGISTERED DEVICES</h4>
+
+                <p>{{widgets.registerDevices || 0}}</p>
+            </div>
+            <div class="stats-link">
+                <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-blue">
+            <div class="stats-icon"><i class="fa fa-mobile"></i></div>
+            <div class="stats-info">
+                <h4>DEREGISTERED DEVICES</h4>
+
+                <p>{{widgets.deRegisterDevices || 0}}%</p>
+            </div>
+            <div class="stats-link">
+                <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-purple">
+            <div class="stats-icon"><i class="fa fa-link"></i></div>
+            <div class="stats-info">
+                <h4>TRANSIMISSIONS</h4>
+
+                <p>{{widgets.transmissions || 0}}%</p>
+            </div>
+            <div class="stats-link">
+                <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-red">
+            <div class="stats-icon"><i class="fa fa-list"></i></div>
+            <div class="stats-info">
+                <h4>PARAMETERS</h4>
+
+                <p>{{widgets.paramters || 0}}%</p>
+            </div>
+            <div class="stats-link">
+                <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+</div>
+<!-- end row -->
+
+<!-- begin row -->
+<div class="row">
+    <div class="col-md-4" data-ng-mouseenter="showAction=true" data-ng-mouseleave="showAction=false;">
+        <div class="panel panel-inverse" data-sortable-id="chart-js-2">
+            <div class="panel-heading">
+                <div class="pull-right" ng-if="showAction">
+                    <button class="btn-xs btn btn-success"
+                            ng-click="overViewFn.retrieveActiveUsers(false,dateRangeType['DAY'])">Daily
+                    </button>
+                    <button class="btn-xs btn btn-success"
+                            ng-click="overViewFn.retrieveActiveUsers(false,dateRangeType['WEEK'])">Weekly
+                    </button>
+                    <button class="btn-xs btn  btn-success"
+                            ng-click="overViewFn.retrieveActiveUsers(false,dateRangeType['MONTH'])">Yearly
+                    </button>
+                </div>
+                <h4 class="panel-title ">Active Users</h4>
+
+            </div>
+            <div class="panel-body">
+                <div>
+                    <canvas id="line-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- begin col-6 -->
+    <div class="col-md-4" data-ng-mouseenter="showInstallAction=true" data-ng-mouseleave="showInstallAction=false;">
+        <div class="panel panel-inverse" data-sortable-id="flot-chart-5">
+            <div class="panel-heading">
+                <div class="pull-right" ng-if="showInstallAction">
+                    <button class="btn-xs btn btn-success"
+                            ng-click="overViewFn.retrieveInstallRate(false,dateRangeType['DAY'])">Daily
+                    </button>
+                    <button class="btn-xs btn btn-success"
+                            ng-click="overViewFn.retrieveInstallRate(false,dateRangeType['WEEK'])">Weekly
+                    </button>
+                    <button class="btn-xs btn  btn-success"
+                            ng-click="overViewFn.retrieveInstallRate(false,dateRangeType['MONTH'])">Yearly
+                    </button>
+                </div>
+                <h4 class="panel-title">Install Rate</h4>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <canvas id="line-chart1"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end col-6 -->
+    <!-- begin col-6 -->
+    <div class="col-md-4" data-ng-mouseenter="showUnInstallAction=true"
+         data-ng-mouseleave="showUnInstallAction=false;">
+        <div class="panel panel-inverse" data-sortable-id="flot-chart-5">
+            <div class="panel-heading">
+                <div class="pull-right" ng-if="showUnInstallAction">
+                    <button class="btn-xs btn btn-success"
+                            ng-click="overViewFn.retrieveUnInstallRate(false,dateRangeType['DAY'])">Daily
+                    </button>
+                    <button class="btn-xs btn btn-success"
+                            ng-click="overViewFn.retrieveUnInstallRate(false,dateRangeType['WEEK'])">Weekly
+                    </button>
+                    <button class="btn-xs btn  btn-success"
+                            ng-click="overViewFn.retrieveUnInstallRate(false,dateRangeType['MONTH'])">Yearly
+                    </button>
+                </div>
+                <h4 class="panel-title">Uninstall Rate</h4>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <canvas id="line-chart2"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end col-6 -->
+</div>
+<!-- end row -->
+
+
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-heading" id="newRegisterDevices">
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default"
+                       data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a class="btn btn-xs btn-icon btn-circle btn-success"
+                       data-ng-click="overViewFn.retrieveNewRegisterDevices()"
+                       data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                    <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a> -->
+                </div>
+                <h4 class="panel-title">New Registered Devices</h4>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>Device & Manufacturer</th>
+                            <th>Operating System</th>
+                            <th>Location</th>
+                            <th>Created</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="nonRD in nonRegisterDevices">
+                            <td>{{$index+1}}</td>
+                            <td>{{nonRD.device}}</td>
+                            <td>{{nonRD.os}}</td>
+                            <td>{{nonRD.location}}</td>
+                            <td>{{nonRD.createdon}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+    <!-- end col-12 -->
+</div>
+<!-- end row -->
+</div>

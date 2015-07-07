@@ -253,7 +253,7 @@ var handlePanelAction = function() {
         });
         $(this).tooltip('show');
     });
-    $('[data-click=panel-reload]').click(function(e) {
+    /*$('[data-click=panel-reload]').click(function(e) {
         e.preventDefault();
         var target = $(this).closest('.panel');
         if (!$(target).hasClass('panel-loading')) {
@@ -266,7 +266,7 @@ var handlePanelAction = function() {
                 $(target).find('.panel-loader').remove();
             }, 2000);
         }
-    });
+    });*/
     
     // expand
     $('[data-click=panel-expand]').hover(function() {

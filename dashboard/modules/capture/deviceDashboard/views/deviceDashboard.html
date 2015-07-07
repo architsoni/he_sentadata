@@ -1,0 +1,171 @@
+<div id="content" class="content">
+    <!-- begin breadcrumb -->
+    <ol class="breadcrumb pull-right">
+        <li><a href="javascript:;">Home</a></li>
+        <li class="active">Device Dashboard</li>
+    </ol>
+    <!-- end breadcrumb -->
+    <!-- begin page-header -->
+    <h1 class="page-header">Device Dashboard</h1>
+    <!-- end page-header -->
+    <!-- begin row -->
+    <div class="row">
+        <!-- begin col-4 -->
+        <div class="col-md-4 col-sm-6">
+            <div class="widget widget-stats bg-green">
+                <div class="stats-icon"><i class="fa fa-desktop"></i></div>
+                <div class="stats-info">
+                    <h4>Devices by Manufacturer</h4>
+                    <p>3,291,922</p>
+                </div>
+                <div class="stats-link">
+                    <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- end col-4 -->
+        <!-- begin col-4 -->
+        <div class="col-md-4 col-sm-6">
+            <div class="widget widget-stats bg-blue">
+                <div class="stats-icon"><i class="fa fa-chain-broken"></i></div>
+                <div class="stats-info">
+                    <h4>Devices by Operating System</h4>
+                    <p>20.44%</p>
+                </div>
+                <div class="stats-link">
+                    <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- end col-4 -->
+        <!-- begin col-4 -->
+        <div class="col-md-4 col-sm-6">
+            <div class="widget widget-stats bg-purple">
+                <div class="stats-icon"><i class="fa fa-users"></i></div>
+                <div class="stats-info">
+                    <h4>Devices by Location</h4>
+                    <p>1,291,922</p>
+                </div>
+                <div class="stats-link">
+                    <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- end col-4-->
+    </div>
+    <!-- end row -->
+
+    <!-- begin row -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-inverse" data-sortable-id="chart-js-2">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Devices By Manufacturer</h4>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        A bar chart is a way of showing data as bars.
+                        It is sometimes used to show trend data, and the comparison of multiple data sets side by side.
+                    </p>
+                    <div>
+                        <canvas id="pie-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- begin col-6 -->
+        <div class="col-md-4">
+            <div class="panel panel-inverse" data-sortable-id="flot-chart-5">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Devices By Operating System</h4>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        Pie and doughnut charts are probably the most commonly used chart there are. They are divided into segments, the arc of each segment shows the proportional value of each piece of data.
+                    </p>
+
+                    <div>
+                        <canvas id="pie-chart_first"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end col-6 -->
+        <!-- begin col-6 -->
+        <div class="col-md-4">
+            <div class="panel panel-inverse" data-sortable-id="flot-chart-5">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Devices By Location</h4>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        Pie and doughnut charts are probably the most commonly used chart there are. They are divided into segments, the arc of each segment shows the proportional value of each piece of data.
+                    </p>
+
+                    <div>
+                        <canvas id="pie-chart_second"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end col-6 -->
+    </div>
+    <!-- end row -->
+
+
+    <!-- begin row -->
+    <div class="row">
+        <!-- begin col-12 -->
+        <div class="col-md-12">
+            <!-- begin panel -->
+            <div class="panel panel-inverse" >
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                        <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a> -->
+                    </div>
+                    <h4 class="panel-title">Responsive Table</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Sr.No</th>
+                                <th>Active</th>
+                                <th>User</th>
+                                <th>Created</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Table cell</td>
+                                <td>Table cell</td>
+                                <td>Table cell</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Table cell</td>
+                                <td>Table cell</td>
+                                <td>Table cell</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Table cell</td>
+                                <td>Table cell</td>
+                                <td>Table cell</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- end panel -->
+        </div>
+        <!-- end col-12 -->
+    </div>
+    <!-- end row -->
+</div>
