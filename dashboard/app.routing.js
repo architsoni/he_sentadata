@@ -6,7 +6,7 @@ angular.module('senta-app')
     .config(['$stateProvider', '$urlRouterProvider',
         function ($stateProvider, $urlRouterProvider) {
             $urlRouterProvider
-                .otherwise('#/overview');
+                .otherwise('overview');
             $stateProvider
                 .state('login', {
                     url: '/login',
