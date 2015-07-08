@@ -20,7 +20,7 @@ angular.module("senta-overview")
             retrieveOverviewWidgets: function (params) {
 
                 var defer = $q.defer();
-                $http.get("http://www.json-generator.com/api/json/get/bNMHDIrbEy?indent=2&type="+params.type)
+                $http.get("http://www.json-generator.com/api/json/get/bNMHDIrbEy?indent=2&widgetType="+params.type)
                     .success(function (result) {
                         defer.resolve(result)
                     })
