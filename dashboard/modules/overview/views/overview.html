@@ -32,7 +32,7 @@
             <div class="stats-info">
                 <h4>DEREGISTERED DEVICES</h4>
 
-                <p>{{widgets.deRegisterDevices || 0}}%</p>
+                <p>{{widgets.deRegisterDevices || 0}}</p>
             </div>
             <div class="stats-link">
                 <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
@@ -47,7 +47,7 @@
             <div class="stats-info">
                 <h4>TRANSIMISSIONS</h4>
 
-                <p>{{widgets.transmissions || 0}}%</p>
+                <p>{{widgets.transmissions || 0}}</p>
             </div>
             <div class="stats-link">
                 <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
@@ -62,7 +62,7 @@
             <div class="stats-info">
                 <h4>PARAMETERS</h4>
 
-                <p>{{widgets.paramters || 0}}%</p>
+                <p>{{widgets.paramters || 0}}</p>
             </div>
             <div class="stats-link">
                 <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
@@ -75,10 +75,10 @@
 
 <!-- begin row -->
 <div class="row">
-    <div class="col-md-4" data-ng-mouseenter="showAction=true" data-ng-mouseleave="showAction=false;">
+    <div class="col-md-4" >
         <div class="panel panel-inverse" data-sortable-id="chart-js-2">
             <div class="panel-heading">
-                <div class="pull-right" ng-if="showAction">
+                <div class="pull-right">
                     <button class="btn-xs btn btn-success"
                             ng-click="overViewFn.retrieveActiveUsers(false,dateRangeType['DAY'])">Daily
                     </button>
@@ -100,10 +100,10 @@
         </div>
     </div>
     <!-- begin col-6 -->
-    <div class="col-md-4" data-ng-mouseenter="showInstallAction=true" data-ng-mouseleave="showInstallAction=false;">
+    <div class="col-md-4">
         <div class="panel panel-inverse" data-sortable-id="flot-chart-5">
             <div class="panel-heading">
-                <div class="pull-right" ng-if="showInstallAction">
+                <div class="pull-right" >
                     <button class="btn-xs btn btn-success"
                             ng-click="overViewFn.retrieveInstallRate(false,dateRangeType['DAY'])">Daily
                     </button>
@@ -125,11 +125,10 @@
     </div>
     <!-- end col-6 -->
     <!-- begin col-6 -->
-    <div class="col-md-4" data-ng-mouseenter="showUnInstallAction=true"
-         data-ng-mouseleave="showUnInstallAction=false;">
+    <div class="col-md-4" >
         <div class="panel panel-inverse" data-sortable-id="flot-chart-5">
             <div class="panel-heading">
-                <div class="pull-right" ng-if="showUnInstallAction">
+                <div class="pull-right" >
                     <button class="btn-xs btn btn-success"
                             ng-click="overViewFn.retrieveUnInstallRate(false,dateRangeType['DAY'])">Daily
                     </button>
