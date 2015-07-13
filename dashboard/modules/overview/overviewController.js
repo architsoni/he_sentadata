@@ -51,11 +51,13 @@ angular.module("senta-overview")
             },
             retrieveActiveUsers: function (animationOption, dateRangeType) {
                 dateRangeType = dateRangeType || $scope.dateRangeType['DAY'];
+                $scope.activeUser={dateRangeType:dateRangeType};
                 panelReloadStart(false,"#line-chart");
 
                 OverviewServices.retrieveOverviewLineChart({type: 'activeUser', dateRangeType: dateRangeType})
                     .then(function (result) {
                         if (result.flag) {
+
                             panelReloadStop(false,"#line-chart");
 
                             var ctx = document.getElementById("line-chart").getContext('2d');
@@ -70,10 +72,12 @@ angular.module("senta-overview")
             },
             retrieveInstallRate: function (animationOption, dateRangeType) {
                 dateRangeType = dateRangeType || $scope.dateRangeType['DAY'];
+                $scope.installRate={dateRangeType:dateRangeType};
                 panelReloadStart(false,"#line-chart1");
                 OverviewServices.retrieveOverviewLineChart({type: 'installRate', dateRangeType: dateRangeType})
                     .then(function (result) {
                         if (result.flag) {
+
                             panelReloadStop(false,"#line-chart1");
                             var ctx = document.getElementById("line-chart1").getContext('2d');
                             var lineChart = new Chart(ctx).Line(result.data, {
@@ -87,10 +91,12 @@ angular.module("senta-overview")
             },
             retrieveUnInstallRate: function (animationOption, dateRangeType) {
                 dateRangeType = dateRangeType || $scope.dateRangeType['DAY'];
+                $scope.uninstallRate={dateRangeType:dateRangeType};
                 panelReloadStart(false,"#line-chart2");
                 OverviewServices.retrieveOverviewLineChart({type: 'unInstallRate', dateRangeType: dateRangeType})
                     .then(function (result) {
                         if (result.flag) {
+
                             panelReloadStop(false,"#line-chart2");
 
                             var ctx = document.getElementById("line-chart2").getContext('2d');

@@ -80,12 +80,15 @@
             <div class="panel-heading">
                 <div class="pull-right">
                     <button class="btn-xs btn btn-success"
+                            data-ng-class="{'active':activeUser.dateRangeType==dateRangeType['DAY']}"
                             ng-click="overViewFn.retrieveActiveUsers(false,dateRangeType['DAY'])">Daily
                     </button>
                     <button class="btn-xs btn btn-success"
+                            data-ng-class="{'active':activeUser.dateRangeType==dateRangeType['WEEK']}"
                             ng-click="overViewFn.retrieveActiveUsers(false,dateRangeType['WEEK'])">Weekly
                     </button>
                     <button class="btn-xs btn  btn-success"
+                            data-ng-class="{'active':activeUser.dateRangeType==dateRangeType['MONTH']}"
                             ng-click="overViewFn.retrieveActiveUsers(false,dateRangeType['MONTH'])">Yearly
                     </button>
                 </div>
@@ -105,12 +108,15 @@
             <div class="panel-heading">
                 <div class="pull-right" >
                     <button class="btn-xs btn btn-success"
+                            data-ng-class="{'active':installRate.dateRangeType==dateRangeType['DAY']}"
                             ng-click="overViewFn.retrieveInstallRate(false,dateRangeType['DAY'])">Daily
                     </button>
                     <button class="btn-xs btn btn-success"
+                            data-ng-class="{'active':installRate.dateRangeType==dateRangeType['WEEK']}"
                             ng-click="overViewFn.retrieveInstallRate(false,dateRangeType['WEEK'])">Weekly
                     </button>
                     <button class="btn-xs btn  btn-success"
+                            data-ng-class="{'active':installRate.dateRangeType==dateRangeType['MONTH']}"
                             ng-click="overViewFn.retrieveInstallRate(false,dateRangeType['MONTH'])">Yearly
                     </button>
                 </div>
@@ -130,12 +136,15 @@
             <div class="panel-heading">
                 <div class="pull-right" >
                     <button class="btn-xs btn btn-success"
+                            data-ng-class="{'active':uninstallRate.dateRangeType==dateRangeType['DAY']}"
                             ng-click="overViewFn.retrieveUnInstallRate(false,dateRangeType['DAY'])">Daily
                     </button>
                     <button class="btn-xs btn btn-success"
+                            data-ng-class="{'active':uninstallRate.dateRangeType==dateRangeType['WEEK']}"
                             ng-click="overViewFn.retrieveUnInstallRate(false,dateRangeType['WEEK'])">Weekly
                     </button>
                     <button class="btn-xs btn  btn-success"
+                            data-ng-class="{'active':uninstallRate.dateRangeType==dateRangeType['MONTH']}"
                             ng-click="overViewFn.retrieveUnInstallRate(false,dateRangeType['MONTH'])">Yearly
                     </button>
                 </div>
