@@ -35,10 +35,10 @@ angular.module("senta-overview")
                     });
                 return defer.promise;
             },
-            retrieveNewRegisterDevices: function () {
+            retrieveNewRegisterDevices: function (params) {
 
                 var defer = $q.defer();
-                $http.get("http://www.json-generator.com/api/json/get/bVccorcZiW?indent=2")
+                $http.post("https://demo1.sentadata.com/SentaDCaaS.cgi",params)
                     .success(function (result) {
                         defer.resolve(result)
                     })

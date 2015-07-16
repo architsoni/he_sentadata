@@ -55,18 +55,18 @@ angular.module("senta-overview")
                 dateRangeType = dateRangeType || $scope.dateRangeType['DAY'];
                 $scope.activeUser = {dateRangeType: dateRangeType};
                 panelReloadStart(false, "#line-chart");
-                var json='WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"chart1"},{"name":"start_day","value":"2015-01-01"} ]}';
+                var json = 'WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"chart1"},{"name":"start_day","value":"2015-01-01"} ]}';
 
                 OverviewServices.retrieveOverviewLineChart(json/*{type: 'activeUser', dateRangeType: dateRangeType}*/)
                     .then(function (result) {
 //                        if (result.flag) {
-                            var lineChartData=prepareLineChart(result.chart1,'date','transmissions');
-                            panelReloadStop(false, "#line-chart");
+                        var lineChartData = prepareLineChart(result.chart1, 'date', 'transmissions');
+                        panelReloadStop(false, "#line-chart");
 
-                            var ctx = document.getElementById("line-chart").getContext('2d');
-                            var lineChart = new Chart(ctx).Line(lineChartData, {
-                                animation: animationOption
-                            });
+                        var ctx = document.getElementById("line-chart").getContext('2d');
+                        var lineChart = new Chart(ctx).Line(lineChartData, {
+                            animation: animationOption
+                        });
 //                        }
 
                     }, function (error) {
@@ -77,16 +77,16 @@ angular.module("senta-overview")
                 dateRangeType = dateRangeType || $scope.dateRangeType['DAY'];
                 $scope.installRate = {dateRangeType: dateRangeType};
                 panelReloadStart(false, "#line-chart1");
-                var json='WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"chart1"},{"name":"start_day","value":"2015-06-01"} ]}';
+                var json = 'WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"chart1"},{"name":"start_day","value":"2015-06-01"} ]}';
                 OverviewServices.retrieveOverviewLineChart(json/*{type: 'installRate', dateRangeType: dateRangeType}*/)
                     .then(function (result) {
 //                        if (result.flag) {
-                            var lineChartData=prepareLineChart(result.chart1,'date','transmissions');
-                            panelReloadStop(false, "#line-chart1");
-                            var ctx = document.getElementById("line-chart1").getContext('2d');
-                            var lineChart = new Chart(ctx).Line(lineChartData, {
-                                animation: animationOption
-                            });
+                        var lineChartData = prepareLineChart(result.chart1, 'date', 'transmissions');
+                        panelReloadStop(false, "#line-chart1");
+                        var ctx = document.getElementById("line-chart1").getContext('2d');
+                        var lineChart = new Chart(ctx).Line(lineChartData, {
+                            animation: animationOption
+                        });
 //                        }
 
                     }, function (error) {
@@ -97,17 +97,17 @@ angular.module("senta-overview")
                 dateRangeType = dateRangeType || $scope.dateRangeType['DAY'];
                 $scope.uninstallRate = {dateRangeType: dateRangeType};
                 panelReloadStart(false, "#line-chart2");
-                var json='WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"chart1"},{"name":"start_day","value":"2015-07-01"} ]}';
+                var json = 'WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"chart1"},{"name":"start_day","value":"2015-07-01"} ]}';
                 OverviewServices.retrieveOverviewLineChart(json/*{type: 'unInstallRate', dateRangeType: dateRangeType}*/)
                     .then(function (result) {
 //                        if (result.flag) {
-                            var lineChartData=prepareLineChart(result.chart1,'date','transmissions');
-                            panelReloadStop(false, "#line-chart2");
+                        var lineChartData = prepareLineChart(result.chart1, 'date', 'transmissions');
+                        panelReloadStop(false, "#line-chart2");
 
-                            var ctx = document.getElementById("line-chart2").getContext('2d');
-                            var lineChart = new Chart(ctx).Line(lineChartData, {
-                                animation: animationOption
-                            });
+                        var ctx = document.getElementById("line-chart2").getContext('2d');
+                        var lineChart = new Chart(ctx).Line(lineChartData, {
+                            animation: animationOption
+                        });
 //                        }
 
                     }, function (error) {
@@ -171,13 +171,14 @@ angular.module("senta-overview")
              },*/
             retrieveNewRegisterDevices: function () {
 //                panelReloadStart(false,"#newRegisterDevices");
-                OverviewServices.retrieveNewRegisterDevices()
+                var json = 'WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"StParameter", "event":"StParameterStaticReport"},"params": [{"name":"latest", "value":"10"}]}';
+                OverviewServices.retrieveNewRegisterDevices(json)
                     .then(function (result) {
-                        if (result.flag) {
+//                        if (result.flag) {
 //                            panelReloadStop(false,"#newRegisterDevices");
-                            $scope.nonRegisterDevices = result.data;
+                        $scope.nonRegisterDevices = result.devices;
 
-                        }
+//                        }
 
                     }, function (error) {
                         alert(error);
