@@ -14,6 +14,12 @@ angular.module('senta-app')
                     controller: "LoginController",
                     resolve: load(['modules/login/loginController.js'/*, 'modules/capture/deviceDashboard/deviceDashboardServices.js'*/])
                 })
+                .state('signUp', {
+                    url: '/signUp',
+                    templateUrl: "modules/signUp/singUp.html",
+                    controller: "SignUpController",
+                    resolve: load(['modules/signUp/signUpController.js'/*, 'modules/capture/deviceDashboard/deviceDashboardServices.js'*/])
+                })
                 .state('overview', {
                     url: '/overview',
                     templateUrl: "modules/overview/views/overview.html",

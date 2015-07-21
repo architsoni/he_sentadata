@@ -51,7 +51,7 @@ var prepareLineChart = function (result, xLabel, yLabel) {
         labels[i] = result[i][xLabel];
         data[i] = result[i][yLabel];
     }
-    var chart={
+    var chart = {
         "labels": labels,
         "datasets": [
             {
@@ -67,4 +67,9 @@ var prepareLineChart = function (result, xLabel, yLabel) {
         ]
     }
     return chart;
+}
+function resetChartById(id) {
+    var parent = jQuery('#' + id).parent();
+    jQuery('#' + id).remove();
+    parent.append('<canvas id="' + id + '"><canvas>');
 }

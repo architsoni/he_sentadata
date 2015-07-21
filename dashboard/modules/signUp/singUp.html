@@ -1,0 +1,91 @@
+<div id="page-container" class="fade">
+    <!-- begin register -->
+    <div class="register register-with-news-feed">
+        <!-- begin news-feed -->
+        <div class="news-feed">
+            <div class="news-image">
+                <img src="assets/img/login-bg/bg-8.jpg" alt=""/>
+            </div>
+        </div>
+        <!-- end news-feed -->
+        <!-- begin right-content -->
+        <div class="right-content">
+            <!-- begin register-header -->
+            <h1 class="register-header">
+                Sign Up
+                <small>Create your Senta Data Account.</small>
+            </h1>
+            <!-- end register-header -->
+            <!-- begin register-content -->
+            <div class="register-content">
+                <div class="alert alert-danger" role="alert" ng-if="error.flag">{{error.message}}</div>
+                <form class="margin-bottom-0" name="signUpForm">
+                    <!--<label class="control-label">Name</label>
+                    <div class="row row-space-10">
+                        <div class="col-md-6 m-b-15">
+                            <input type="text" class="form-control" placeholder="First name" ng-model="signUp.firstName" />
+                        </div>
+                        <div class="col-md-6 m-b-15">
+                            <input type="text" class="form-control" placeholder="Last name" ng-model="signUp.lastName"  />
+                        </div>
+                    </div>-->
+                    <label class="control-label">Email</label>
+
+                    <div class="row m-b-15">
+                        <div class="col-md-12">
+                            <input type="email" class="form-control" placeholder="Email address"
+                                   required
+                                   ng-model="signUp.email"/>
+                        </div>
+                    </div>
+
+                    <label class="control-label">Password</label>
+
+                    <div class="row m-b-15">
+                        <div class="col-md-12">
+                            <input type="password" class="form-control" placeholder="Password"
+                                   ng-model="signUp.password"
+                                   required/>
+                        </div>
+                    </div>
+                    <label class="control-label">Confirm Password</label>
+
+                    <div class="row m-b-15">
+                        <div class="col-md-12">
+                            <input type="password" class="form-control" placeholder="Re enter Password"
+                                   required
+                                   ng-model="signUp.confirmPassword"/>
+                        </div>
+                    </div>
+
+
+                    <div class="checkbox m-b-30">
+                        <label>
+                            <input type="checkbox" ng-model="signUp.agreement"/> By clicking Sign Up, you agree to our
+                            <a href="#">Terms</a> and
+                            that you have read our <a href="#">Data Policy</a>, including our <a href="#">Cookie Use</a>.
+                        </label>
+                    </div>
+                    <div class="register-buttons">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg"
+                                ng-disabled="signUpForm.$invalid || !signUp.agreement || signUp.confirmPassword!=signUp.password"
+                                data-ng-click="signUpUser()">Sign Up
+                        </button>
+                    </div>
+                    <div class="m-t-20 m-b-40 p-b-40">
+                        Already a member? Click <a href="#/login">here</a> to login.
+                    </div>
+                    <hr/>
+                    <p class="text-center text-inverse">
+                        &copy; SentaData Right Reserved 2015
+                    </p>
+                </form>
+            </div>
+            <!-- end register-content -->
+        </div>
+        <!-- end right-content -->
+    </div>
+    <!-- end register -->
+
+
+</div>

@@ -5,15 +5,15 @@
 angular.module("senta-overview")
     .controller('OverviewController', ["$scope", "$rootScope", "OverviewServices", function ($scope, $rootScope, OverviewServices) {
 
-        $scope.dateRangeType = {"DAY": 1, "WEEK": 2, "MONTH": 3};
+        $scope.dateRangeType = {"DAY": 'day', "WEEK": 'week', "MONTH": 'month'};
 
         var handleGenerateGraph = function (animationOption) {
             var animationOption = (animationOption) ? animationOption : false;
 
 
-            $scope.overViewFn.retrieveActiveUsers('line-chart', animationOption);
-            $scope.overViewFn.retrieveInstallRate('line-chart1', animationOption);
-            $scope.overViewFn.retrieveUnInstallRate('line-chart2', animationOption);
+            $scope.overViewFn.retrieveActiveUsers(animationOption);
+            $scope.overViewFn.retrieveInstallRate(animationOption);
+            $scope.overViewFn.retrieveUnInstallRate(animationOption);
 
             $scope.overViewFn.retrieveWidgetData();
             /* $scope.overViewFn.retrieveRegisterDevice();
@@ -55,18 +55,19 @@ angular.module("senta-overview")
                 dateRangeType = dateRangeType || $scope.dateRangeType['DAY'];
                 $scope.activeUser = {dateRangeType: dateRangeType};
                 panelReloadStart(false, "#line-chart");
-                var json = 'WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"chart1"},{"name":"start_day","value":"2015-01-01"} ]}';
+                var json = 'WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"XaPages", "event":"XaDashboard"}, "params":[ {"name":"output","value":"active_devices"},{"name":"start_day","value":"2015-07-01"},{"name":"end_day","value":"2015-07-20"},{"name":"period","value":"' + dateRangeType + '"}]}';
 
                 OverviewServices.retrieveOverviewLineChart(json/*{type: 'activeUser', dateRangeType: dateRangeType}*/)
                     .then(function (result) {
 //                        if (result.flag) {
-                        var lineChartData = prepareLineChart(result.chart1, 'date', 'transmissions');
+                        var lineChartData = prepareLineChart(result.active_devices, 'date', 'transmissions');
                         panelReloadStop(false, "#line-chart");
-
+                        resetChartById("line-chart");
                         var ctx = document.getElementById("line-chart").getContext('2d');
                         var lineChart = new Chart(ctx).Line(lineChartData, {
                             animation: animationOption
                         });
+                        lineChart.update();
 //                        }
 
                     }, function (error) {
@@ -77,12 +78,13 @@ angular.module("senta-overview")
                 dateRangeType = dateRangeType || $scope.dateRangeType['DAY'];
                 $scope.installRate = {dateRangeType: dateRangeType};
                 panelReloadStart(false, "#line-chart1");
-                var json = 'WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"chart1"},{"name":"start_day","value":"2015-06-01"} ]}';
+                var json = 'WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"new_devices"},{"name":"start_day","value":"2015-07-01"},{"name":"end_day","value":"2015-07-15"},{"name":"period","value":"' + dateRangeType + '"}]}';
                 OverviewServices.retrieveOverviewLineChart(json/*{type: 'installRate', dateRangeType: dateRangeType}*/)
                     .then(function (result) {
 //                        if (result.flag) {
-                        var lineChartData = prepareLineChart(result.chart1, 'date', 'transmissions');
+                        var lineChartData = prepareLineChart(result.new_devices, 'date', 'devices');
                         panelReloadStop(false, "#line-chart1");
+                        resetChartById("line-chart1");
                         var ctx = document.getElementById("line-chart1").getContext('2d');
                         var lineChart = new Chart(ctx).Line(lineChartData, {
                             animation: animationOption
@@ -103,7 +105,7 @@ angular.module("senta-overview")
 //                        if (result.flag) {
                         var lineChartData = prepareLineChart(result.chart1, 'date', 'transmissions');
                         panelReloadStop(false, "#line-chart2");
-
+                        resetChartById("line-chart2");
                         var ctx = document.getElementById("line-chart2").getContext('2d');
                         var lineChart = new Chart(ctx).Line(lineChartData, {
                             animation: animationOption
