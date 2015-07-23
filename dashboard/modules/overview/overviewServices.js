@@ -23,7 +23,7 @@ angular.module("senta-overview")
 
                 var defer = $q.defer();
 
-                var json='WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"counters"} ]}';
+                var json='WsJson=yes&WsJsonData={"login": {"username": "", "password": ""},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"counters"} ]}';
 
                 $http.post("https://demo1.sentadata.com/SentaDCaaS.cgi",json)
 //                $http.get("http://www.json-generator.com/api/json/get/bNMHDIrbEy?indent=2&widgetType="+params.type)

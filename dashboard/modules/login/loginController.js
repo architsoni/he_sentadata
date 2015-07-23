@@ -6,6 +6,15 @@ angular.module("senta-login")
     .controller('LoginController',
         ["$scope", "$window", "$state", '$http', "$cookies", function ($scope, $window, $state, $http, $cookies) {
 
+            $http.get("https://demo1.sentadata.com/SentaDCaaS.cgi?obj=XaUser&evt=XaUserLogin")
+                .success(function (result, status, header) {
+
+                })
+                .error(function (error) {
+                    console.log(error);
+                })
+
+
             $scope.login = function (params) {
                 var json = 'WsJson=yes&WsJsonData={"login": {"username": "", "password": ""},' +
                     '"operation": {"object":"XaUser", "event":"XaUserLogin"},' +
@@ -22,12 +31,6 @@ angular.module("senta-login")
 //                        delete $window.sessionStorage.token;
                     })
 
-                /*if (params.username == 'senta' && params.password == 'senta') {
-
-                 } else {
-
-
-                 }*/
             };
 
             angular.element(document).ready(function () {

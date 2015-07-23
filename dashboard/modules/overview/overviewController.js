@@ -78,7 +78,7 @@ angular.module("senta-overview")
                 dateRangeType = dateRangeType || $scope.dateRangeType['DAY'];
                 $scope.installRate = {dateRangeType: dateRangeType};
                 panelReloadStart(false, "#line-chart1");
-                var json = 'WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"new_devices"},{"name":"start_day","value":"2015-07-01"},{"name":"end_day","value":"2015-07-15"},{"name":"period","value":"' + dateRangeType + '"}]}';
+                var json = 'WsJson=yes&WsJsonData={"login": {"username": "", "password": ""},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"new_devices"},{"name":"start_day","value":"2015-07-01"},{"name":"end_day","value":"2015-07-15"},{"name":"period","value":"' + dateRangeType + '"}]}';
                 OverviewServices.retrieveOverviewLineChart(json/*{type: 'installRate', dateRangeType: dateRangeType}*/)
                     .then(function (result) {
 //                        if (result.flag) {
@@ -99,7 +99,7 @@ angular.module("senta-overview")
                 dateRangeType = dateRangeType || $scope.dateRangeType['DAY'];
                 $scope.uninstallRate = {dateRangeType: dateRangeType};
                 panelReloadStart(false, "#line-chart2");
-                var json = 'WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"chart1"},{"name":"start_day","value":"2015-07-01"} ]}';
+                var json = 'WsJson=yes&WsJsonData={"login": {"username": "", "password": ""},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"chart1"},{"name":"start_day","value":"2015-07-01"} ]}';
                 OverviewServices.retrieveOverviewLineChart(json/*{type: 'unInstallRate', dateRangeType: dateRangeType}*/)
                     .then(function (result) {
 //                        if (result.flag) {
@@ -173,7 +173,7 @@ angular.module("senta-overview")
              },*/
             retrieveNewRegisterDevices: function () {
 //                panelReloadStart(false,"#newRegisterDevices");
-                var json = 'WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"StParameter", "event":"StParameterStaticReport"},"params": [{"name":"latest", "value":"10"}]}';
+                var json = 'WsJson=yes&WsJsonData={"login": {"username": "", "password": ""},"operation": {"object":"StParameter", "event":"StParameterStaticReport"},"params": [{"name":"latest", "value":"10"}]}';
                 OverviewServices.retrieveNewRegisterDevices(json)
                     .then(function (result) {
 //                        if (result.flag) {
