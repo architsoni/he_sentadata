@@ -88,17 +88,17 @@
     <!-- begin sidebar scrollbar -->
     <div data-scrollbar="true" data-height="100%">
         <!-- begin sidebar user -->
-       <!-- <ul class="nav">
-            <li class="nav-profile">
-                <div class="image">
-                    <a href="javascript:;"><img src="assets/img/user-13.jpg" alt=""/></a>
-                </div>
-                <div class="info">
-                    Sean Ngu
-                    <small>Program Manager</small>
-                </div>
-            </li>
-        </ul>-->
+        <!-- <ul class="nav">
+             <li class="nav-profile">
+                 <div class="image">
+                     <a href="javascript:;"><img src="assets/img/user-13.jpg" alt=""/></a>
+                 </div>
+                 <div class="info">
+                     Sean Ngu
+                     <small>Program Manager</small>
+                 </div>
+             </li>
+         </ul>-->
         <!-- end sidebar user -->
         <!-- begin sidebar nav -->
         <ul class="nav">
@@ -168,185 +168,6 @@
 
 <!-- begin #content -->
 <div ui-view></div>
-<!--<div id="content" class="content">
-    &lt;!&ndash; begin breadcrumb &ndash;&gt;
-    <ol class="breadcrumb pull-right">
-        <li><a href="javascript:;">Home</a></li>
-        <li class="active">Dashboard</li>
-    </ol>
-    &lt;!&ndash; end breadcrumb &ndash;&gt;
-&lt;!&ndash; begin page-header &ndash;&gt;
-    <h1 class="page-header">Dashboard</h1>
-    &lt;!&ndash; end page-header &ndash;&gt;
-&lt;!&ndash; begin row &ndash;&gt;
-    <div class="row">
-        &lt;!&ndash; begin col-3 &ndash;&gt;
-        <div class="col-md-3 col-sm-6">
-            <div class="widget widget-stats bg-green">
-                <div class="stats-icon"><i class="fa fa-mobile"></i></div>
-                <div class="stats-info">
-                    <h4>REGISTERED DEVICES</h4>
-                    <p>3,291,922</p>
-                </div>
-                <div class="stats-link">
-                    <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
-                </div>
-            </div>
-        </div>
-        &lt;!&ndash; end col-3 &ndash;&gt;
-&lt;!&ndash; begin col-3 &ndash;&gt;
-        <div class="col-md-3 col-sm-6">
-            <div class="widget widget-stats bg-blue">
-                <div class="stats-icon"><i class="fa fa-mobile"></i></div>
-                <div class="stats-info">
-                    <h4>DEREGISTERED DEVICES</h4>
-                    <p>20.44%</p>
-                </div>
-                <div class="stats-link">
-                    <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
-                </div>
-            </div>
-        </div>
-        &lt;!&ndash; end col-3 &ndash;&gt;
-&lt;!&ndash; begin col-3 &ndash;&gt;
-        <div class="col-md-3 col-sm-6">
-            <div class="widget widget-stats bg-purple">
-                <div class="stats-icon"><i class="fa fa-link"></i></div>
-                <div class="stats-info">
-                    <h4>TRANSIMISSIONS</h4>
-                    <p>1,291,922</p>
-                </div>
-                <div class="stats-link">
-                    <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
-                </div>
-            </div>
-        </div>
-        &lt;!&ndash; end col-3 &ndash;&gt;
-&lt;!&ndash; begin col-3 &ndash;&gt;
-        <div class="col-md-3 col-sm-6">
-            <div class="widget widget-stats bg-red">
-                <div class="stats-icon"><i class="fa fa-list"></i></div>
-                <div class="stats-info">
-                    <h4>PARAMETERS</h4>
-                    <p>112,444</p>
-                </div>
-                <div class="stats-link">
-                    <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
-                </div>
-            </div>
-        </div>
-        &lt;!&ndash; end col-3 &ndash;&gt;
-    </div>
-    &lt;!&ndash; end row &ndash;&gt;
-
-&lt;!&ndash; begin row &ndash;&gt;
-    <div class="row">
-        <div class="col-md-4">
-            <div class="panel panel-inverse" data-sortable-id="chart-js-2">
-                <div class="panel-heading">
-                    <h4 class="panel-title">Active Users</h4>
-                </div>
-                <div class="panel-body">
-                    <div>
-                        <canvas id="line-chart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        &lt;!&ndash; begin col-6 &ndash;&gt;
-        <div class="col-md-4">
-            <div class="panel panel-inverse" data-sortable-id="flot-chart-5">
-                <div class="panel-heading">
-                    <h4 class="panel-title">Install Rate</h4>
-                </div>
-                <div class="panel-body">
-                    <div>
-                        <canvas id="line-chart1"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        &lt;!&ndash; end col-6 &ndash;&gt;
-&lt;!&ndash; begin col-6 &ndash;&gt;
-        <div class="col-md-4">
-            <div class="panel panel-inverse" data-sortable-id="flot-chart-5">
-                <div class="panel-heading">
-                    <h4 class="panel-title">Uninstall Rate</h4>
-                </div>
-                <div class="panel-body">
-                    <div>
-                        <canvas id="line-chart2"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        &lt;!&ndash; end col-6 &ndash;&gt;
-    </div>
-    &lt;!&ndash; end row &ndash;&gt;
-
-
-&lt;!&ndash; begin row &ndash;&gt;
-    <div class="row">
-        &lt;!&ndash; begin col-12 &ndash;&gt;
-        <div class="col-md-12">
-            &lt;!&ndash; begin panel &ndash;&gt;
-            <div class="panel panel-inverse" >
-                <div class="panel-heading">
-                    <div class="panel-heading-btn">
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
-                        &lt;!&ndash; <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a> &ndash;&gt;
-                    </div>
-                    <h4 class="panel-title">New Registered Devices</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Sr.No</th>
-                                <th>Device & Manufacturer</th>
-                                <th>Operating System</th>
-                                <th>Location</th>
-                                <th>Created</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Samsung</td>
-                                <td>Android</td>
-                                <td>North America</td>
-                                <td>29-06-2015 13.00:24</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Samsung</td>
-                                <td>Android</td>
-                                <td>North America</td>
-                                <td>29-06-2015 13.00:24</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Samsung</td>
-                                <td>Android</td>
-                                <td>North America</td>
-                                <td>29-06-2015 13.00:24</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            &lt;!&ndash; end panel &ndash;&gt;
-        </div>
-        &lt;!&ndash; end col-12 &ndash;&gt;
-    </div>
-    &lt;!&ndash; end row &ndash;&gt;
-</div>-->
-<!-- end #content -->
-
 
 <!-- begin scroll to top btn -->
 <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
@@ -384,7 +205,6 @@
 <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="vendor/oclazyload/dist/ocLazyLoad.js"></script>
 <script src="vendor/angular-cookies/angular-cookies.js"></script>
-
 <script src="assets/js/apps.js"></script>
 <!-- ================== END BASE JS ================== -->
 
@@ -394,6 +214,7 @@
 <script src="app.js"></script>
 <script src="app.routing.js"></script>
 <script src="modules/common/script/startUpController.js"></script>
+
 <!--<script src="modules/overview/appDashboardController.js"></script>-->
 <!-- ================== END PAGE LEVEL JS ================== -->
 

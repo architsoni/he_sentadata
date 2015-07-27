@@ -1,13 +1,3 @@
-<!--<form name="loginForm" ng-controller="LoginController"
-      ng-submit="login(credentials)" novalidate>
-    <label for="username">Username:</label>
-    <input type="text" id="username"
-           ng-model="credentials.username">
-    <label for="password">Password:</label>
-    <input type="password" id="password"
-           ng-model="credentials.password">
-    <button type="submit">Login</button>
-</form>-->
 <div class="login-cover">
     <div class="login-cover-image"><img src="assets/img/login-bg/bg-1.jpg" data-id="login-cover-image" alt=""/></div>
     <div class="login-cover-bg"></div>
@@ -27,9 +17,14 @@
             </div>
         </div>
         <!-- end brand -->
+
+        <div class="alert alert-danger" role="alert" ng-if="errorMsg.flag">
+            <a class="alert-link">{{errorMsg.message}}</a>
+        </div>
+
         <div class="login-content">
-            <form name="loginForm" ng-controller="LoginController"
-                  ng-submit="login(credentials)">
+
+            <form name="loginForm" ng-submit="login(credentials)">
                 <div class="form-group m-b-20">
                     <input type="text" class="form-control input-lg" placeholder="Email Address"
                            ng-model="credentials.username"/>
@@ -51,6 +46,7 @@
                 </div>
             </form>
         </div>
+
     </div>
     <!-- end login -->
 </div>

@@ -13,10 +13,13 @@ angular.module('senta-app', ["ui.router", "oc.lazyLoad", "senta-overview", "sent
                     if ($cookies.get('sentaApp')) {
 //                        $config.headers['sentaApp'] = $cookies.get('sentaApp');
                     }
+
                     return $config;
                 },
                 response: function (response) {
+
                     if (response.data.message == 'login form') {
+                        $cookies.remove('token');
                         $cookies.remove('sentaApp');
                         $location.path('/login');
                         return $q.reject(response);
@@ -29,11 +32,13 @@ angular.module('senta-app', ["ui.router", "oc.lazyLoad", "senta-overview", "sent
         $httpProvider.interceptors.push('authHttpInterceptor');
     }])
     .run(function ($rootScope, $state, $cookies, $location) {
-
+        $rootScope.notLoginState = false;
         $rootScope.$on('$stateChangeStart', function (event, nextState, toParam, currentState) {
-            if (!$cookies.get('sentaApp') && (nextState.name != 'login' && nextState.name != 'signUp')) {
+
+            if ((!$cookies.get('sentaApp') || !$cookies.get('token')) && (nextState.name != 'login' && nextState.name != 'signUp')) {
                 $rootScope.notLoginState = false;
-                $location.path('/login');
+                event.preventDefault();
+                $state.go('login');
             } else if (nextState.name == 'login' || nextState.name == 'signUp') {
                 $rootScope.notLoginState = false;
             } else {

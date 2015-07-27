@@ -4,33 +4,56 @@
 
 angular.module("senta-login")
     .controller('LoginController',
-        ["$scope", "$window", "$state", '$http', "$cookies", function ($scope, $window, $state, $http, $cookies) {
+        ["$rootScope", "$scope", "$window", "$state", '$http', "$cookies", '$location', function ($rootScope, $scope, $window, $state, $http, $cookies, $location) {
+            console.log($rootScope.notLoginState);
+            console.log($state.$current.name)
+            var loginJson = {"login": {"username": "", "password": ""}, "operation": {"object": "XaUser", "event": "XaUserLoginFrm"}, "params": [
+                {"name": "email", "value": "demo@sentadata.com"},
+                {"name": "password", "value": "DDdem0"}
+            ]};
+            $scope.errorMsg = {};
 
-            $http.get("https://demo1.sentadata.com/SentaDCaaS.cgi?obj=XaUser&evt=XaUserLogin")
-                .success(function (result, status, header) {
-
-                })
-                .error(function (error) {
-                    console.log(error);
-                })
+            if (!$rootScope.notLoginState) {
+                $http.post("https://demo1.sentadata.com/SentaDCaaS.cgi", "WsJson=yes&WsJsonData=" + JSON.stringify(loginJson))
+                    .then(function (result) {
+                        if (result.data && result.data.message === "login form")
+                            $cookies.put('token', result.data.token);
+                    }, function (error) {
+                        if (error.data && error.data.message === "login form")
+                            $cookies.put('token', error.data.token);
+                    });
+            }
 
 
             $scope.login = function (params) {
-                var json = 'WsJson=yes&WsJsonData={"login": {"username": "", "password": ""},' +
-                    '"operation": {"object":"XaUser", "event":"XaUserLogin"},' +
-                    '"params":[{"name":"email","value":"' + params.username + '"},{"name":"password","value":"' + params.password + '"}]}';
+
+                var json = createReqJSONWithToken($cookies.get("token"), {"operation": {"object": "XaUser", "event": "XaUserLogin"},
+                    "params": [
+                        {"name": "email", "value": params.username },
+                        {"name": "password", "value": params.password }
+                    ]});
+
 
                 $http.post("https://demo1.sentadata.com/SentaDCaaS.cgi", json)
                     .success(function (result) {
-                        $cookies.put('sentaApp', '12345678910');
-//                        $window.sessionStorage.token = "12345678910";
-                        $state.transitionTo("overview");
+                        if (result.result === "success") {
+                            $scope.errorMsg = {};
+                            $cookies.put('sentaApp', '12345678910');
+
+                            //                        $window.sessionStorage.token = "12345678910";
+                            $state.transitionTo('overview');
+                        } else {
+                            $scope.credentials = {};
+                            $scope.errorMsg = result;
+                            $scope.errorMsg.flag = true;
+
+                        }
+
                     })
                     .error(function (error) {
                         $cookies.remove('sentaApp');
-//                        delete $window.sessionStorage.token;
+                        //                        delete $window.sessionStorage.token;
                     })
-
             };
 
             angular.element(document).ready(function () {

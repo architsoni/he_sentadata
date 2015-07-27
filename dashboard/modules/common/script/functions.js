@@ -73,3 +73,10 @@ function resetChartById(id) {
     jQuery('#' + id).remove();
     parent.append('<canvas id="' + id + '"><canvas>');
 }
+
+var createReqJSONWithToken = function (token, params) {
+    var data = {"login": {"username": "", "password": "", token: token}};
+    jQuery.extend(data, params);
+
+    return "WsJson=yes&WsJsonData=" + JSON.stringify(data);
+}

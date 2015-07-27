@@ -3,7 +3,7 @@
  */
 
 angular.module("senta-overview")
-    .controller('OverviewController', ["$scope", "$rootScope", "OverviewServices", function ($scope, $rootScope, OverviewServices) {
+    .controller('OverviewController', ["$scope", "$rootScope", "OverviewServices", '$cookies', function ($scope, $rootScope, OverviewServices, $cookies) {
 
         $scope.dateRangeType = {"DAY": 'day', "WEEK": 'week', "MONTH": 'month'};
 
@@ -14,12 +14,7 @@ angular.module("senta-overview")
             $scope.overViewFn.retrieveActiveUsers(animationOption);
             $scope.overViewFn.retrieveInstallRate(animationOption);
             $scope.overViewFn.retrieveUnInstallRate(animationOption);
-
             $scope.overViewFn.retrieveWidgetData();
-            /* $scope.overViewFn.retrieveRegisterDevice();
-             $scope.overViewFn.retrieveDeRegisterDevice();
-             $scope.overViewFn.retrieveTransimissions();
-             $scope.overViewFn.retrieveParameters();*/
             $scope.overViewFn.retrieveNewRegisterDevices();
         };
 
@@ -55,7 +50,14 @@ angular.module("senta-overview")
                 dateRangeType = dateRangeType || $scope.dateRangeType['DAY'];
                 $scope.activeUser = {dateRangeType: dateRangeType};
                 panelReloadStart(false, "#line-chart");
-                var json = 'WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"XaPages", "event":"XaDashboard"}, "params":[ {"name":"output","value":"active_devices"},{"name":"start_day","value":"2015-07-01"},{"name":"end_day","value":"2015-07-20"},{"name":"period","value":"' + dateRangeType + '"}]}';
+
+
+                var json = createReqJSONWithToken($cookies.get("token"), {  "operation": {"object": "XaPages", "event": "XaDashboard"}, "params": [
+                    {"name": "output", "value": "active_devices"},
+                    {"name": "start_day", "value": "2015-07-01"},
+                    {"name": "end_day", "value": "2015-07-20"},
+                    {"name": "period", "value": dateRangeType }
+                ]});
 
                 OverviewServices.retrieveOverviewLineChart(json/*{type: 'activeUser', dateRangeType: dateRangeType}*/)
                     .then(function (result) {
@@ -78,8 +80,15 @@ angular.module("senta-overview")
                 dateRangeType = dateRangeType || $scope.dateRangeType['DAY'];
                 $scope.installRate = {dateRangeType: dateRangeType};
                 panelReloadStart(false, "#line-chart1");
-                var json = 'WsJson=yes&WsJsonData={"login": {"username": "", "password": ""},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"new_devices"},{"name":"start_day","value":"2015-07-01"},{"name":"end_day","value":"2015-07-15"},{"name":"period","value":"' + dateRangeType + '"}]}';
-                OverviewServices.retrieveOverviewLineChart(json/*{type: 'installRate', dateRangeType: dateRangeType}*/)
+
+                var json = createReqJSONWithToken($cookies.get("token"), {  "operation": {"object": "XaPages", "event": "XaDashboard"}, "params": [
+                    {"name": "output", "value": "new_devices"},
+                    {"name": "start_day", "value": "2015-07-01"},
+                    {"name": "end_day", "value": "2015-07-15"},
+                    {"name": "period", "value": dateRangeType }
+                ]});
+
+                OverviewServices.retrieveOverviewLineChart(json)
                     .then(function (result) {
 //                        if (result.flag) {
                         var lineChartData = prepareLineChart(result.new_devices, 'date', 'devices');
@@ -99,8 +108,13 @@ angular.module("senta-overview")
                 dateRangeType = dateRangeType || $scope.dateRangeType['DAY'];
                 $scope.uninstallRate = {dateRangeType: dateRangeType};
                 panelReloadStart(false, "#line-chart2");
-                var json = 'WsJson=yes&WsJsonData={"login": {"username": "", "password": ""},"operation": {"object":"XaPages", "event":"XaDashboard"},"params":[ {"name":"output","value":"chart1"},{"name":"start_day","value":"2015-07-01"} ]}';
-                OverviewServices.retrieveOverviewLineChart(json/*{type: 'unInstallRate', dateRangeType: dateRangeType}*/)
+
+                var json = createReqJSONWithToken($cookies.get("token"), {  "operation": {"object": "XaPages", "event": "XaDashboard"}, "params": [
+                    {"name": "output", "value": "chart1"},
+                    {"name": "start_day", "value": "2015-07-01"}
+                ]});
+
+                OverviewServices.retrieveOverviewLineChart(json)
                     .then(function (result) {
 //                        if (result.flag) {
                         var lineChartData = prepareLineChart(result.chart1, 'date', 'transmissions');
@@ -117,7 +131,12 @@ angular.module("senta-overview")
                     })
             },
             retrieveWidgetData: function () {
-                OverviewServices.retrieveOverviewWidgets()
+
+                var json = createReqJSONWithToken($cookies.get("token"), {  "operation": {"object": "XaPages", "event": "XaDashboard"}, "params": [
+                    {"name": "output", "value": "counters"}
+                ]});
+
+                OverviewServices.retrieveOverviewWidgets(json)
                     .then(function (result) {
 //                        if (result.flag) {
                         $scope.widgets = result.counters;
@@ -127,53 +146,13 @@ angular.module("senta-overview")
                         alert(error);
                     })
             },
-            /*retrieveRegisterDevice: function () {
-             OverviewServices.retrieveOverviewWidgets({type: 'registerDevice'})
-             .then(function (result) {
-             if (result.flag) {
-             $scope.widgets.registerDevices = result.data.value;
-             }
-
-             }, function (error) {
-             alert(error);
-             })
-             },
-             retrieveDeRegisterDevice: function () {
-             OverviewServices.retrieveOverviewWidgets({type: 'unRegisterDevice'})
-             .then(function (result) {
-             if (result.flag) {
-             $scope.widgets.deRegisterDevices = result.data.value;
-             }
-
-             }, function (error) {
-             alert(error);
-             })
-             },
-             retrieveTransimissions: function () {
-             OverviewServices.retrieveOverviewWidgets({type: 'transmissions'})
-             .then(function (result) {
-             if (result.flag) {
-             $scope.widgets.transmissions = result.data.value;
-             }
-
-             }, function (error) {
-             alert(error);
-             })
-             },
-             retrieveParameters: function () {
-             OverviewServices.retrieveOverviewWidgets({type: 'parameters'})
-             .then(function (result) {
-             if (result.flag) {
-             $scope.widgets.paramters = result.data.value;
-             }
-
-             }, function (error) {
-             alert(error);
-             })
-             },*/
             retrieveNewRegisterDevices: function () {
 //                panelReloadStart(false,"#newRegisterDevices");
-                var json = 'WsJson=yes&WsJsonData={"login": {"username": "", "password": ""},"operation": {"object":"StParameter", "event":"StParameterStaticReport"},"params": [{"name":"latest", "value":"10"}]}';
+
+                var json = createReqJSONWithToken($cookies.get("token"), {   "operation": {"object": "StParameter", "event": "StParameterStaticReport"}, "params": [
+                    {"name": "latest", "value": "10"}
+                ]});
+
                 OverviewServices.retrieveNewRegisterDevices(json)
                     .then(function (result) {
 //                        if (result.flag) {
