@@ -5,8 +5,7 @@
 angular.module("senta-login")
     .controller('LoginController',
         ["$rootScope", "$scope", "$window", "$state", '$http', "$cookies", '$location', function ($rootScope, $scope, $window, $state, $http, $cookies, $location) {
-            console.log($rootScope.notLoginState);
-            console.log($state.$current.name)
+            
             var loginJson = {"login": {"username": "", "password": ""}, "operation": {"object": "XaUser", "event": "XaUserLoginFrm"}, "params": [
                 {"name": "email", "value": "demo@sentadata.com"},
                 {"name": "password", "value": "DDdem0"}
