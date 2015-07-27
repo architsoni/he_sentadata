@@ -37,11 +37,16 @@ angular.module('senta-app', ["ui.router", "oc.lazyLoad", "senta-overview", "sent
 
             if ((!$cookies.get('sentaApp') || !$cookies.get('token')) && (nextState.name != 'login' && nextState.name != 'signUp')) {
                 $rootScope.notLoginState = false;
-                event.preventDefault();
-                $state.go('login');
-            } else if (nextState.name == 'login' || nextState.name == 'signUp') {
+//                event.preventDefault();
+//                $state.go('login');
+                $location.path('/login');
+            }
+            else if (nextState.name == 'login' || nextState.name == 'signUp') {
+//                event.preventDefault();
                 $rootScope.notLoginState = false;
-            } else {
+            }
+            else {
+//                event.preventDefault();
                 $rootScope.notLoginState = true;
             }
 
