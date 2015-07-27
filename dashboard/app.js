@@ -40,6 +40,7 @@ angular.module('senta-app', ["ui.router", "oc.lazyLoad", "senta-overview", "sent
 //                event.preventDefault();
 //                $state.go('login');
                 $location.path('/login');
+                $state.go('login');
             }
             else if (nextState.name == 'login' || nextState.name == 'signUp') {
 //                event.preventDefault();
