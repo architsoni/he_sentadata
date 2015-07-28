@@ -4,7 +4,7 @@
 
 angular.module('senta-app')
     .controller("StartUpController",
-        ["$scope", "$rootScope", "$window", "$state", "$cookies", function ($scope, $rootScope, $window, $state, $cookies) {
+        ["$scope", "$rootScope", "$window", "$state", "$cookies","$http", function ($scope, $rootScope, $window, $state, $cookies,$http) {
 
             Chart.defaults.global = {
                 animation: true,
@@ -58,9 +58,21 @@ angular.module('senta-app')
             });
 
             $scope.logout = function () {
-//                delete $window.sessionStorage.token;
-                $cookies.remove('sentaApp');
-                $cookies.remove('token');
-                $state.transitionTo('login');
+
+                var json = createReqJSONWithToken($cookies.get('token'), {"operation": {"object": "XaUser", "event": "XaUserLogout"}});
+
+                $http.post("https://demo1.sentadata.com/SentaDCaaS.cgi", json)
+                    .success(function (result) {
+                        $cookies.remove('sentaApp');
+                        $cookies.remove('token');
+                        $state.transitionTo('login');
+
+                    })
+                    .error(function (error) {
+
+
+                    })
+
+
             }
         }])

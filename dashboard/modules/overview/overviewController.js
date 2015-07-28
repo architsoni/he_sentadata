@@ -83,7 +83,7 @@ angular.module("senta-overview")
 
                 var json = createReqJSONWithToken($cookies.get("token"), {  "operation": {"object": "XaPages", "event": "XaDashboard"}, "params": [
                     {"name": "output", "value": "new_devices"},
-                    {"name": "start_day", "value": "2015-07-01"},
+                    {"name": "start_day", "value": "2015-05-01"},
                     {"name": "end_day", "value": "2015-07-15"},
                     {"name": "period", "value": dateRangeType }
                 ]});
