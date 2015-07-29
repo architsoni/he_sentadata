@@ -33,12 +33,12 @@ angular.module("senta-login")
                 $http.post(" http://demo1.sentadata.com/SentaDCaaS.cgi", json)
                     .success(function (result) {
                         if (result.result === 'success') {
-                            $scope.error = {};
-                            $state.transitionTo("login");
+                            $scope.message = {flag: true};
+//                            $state.transitionTo("login");
                         }
                         else if (result.result === 'error') {
                             $scope.signUp = {};
-                            $scope.error = {flag: true, message: result.message};
+                            $scope.message = {flag: false};
                         }
 
                     })

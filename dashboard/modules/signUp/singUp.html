@@ -18,7 +18,12 @@
             <!-- end register-header -->
             <!-- begin register-content -->
             <div class="register-content">
-                <div class="alert alert-danger" role="alert" ng-if="error.flag">{{error.message}}</div>
+                <div class="alert alert-danger" role="alert" ng-if="message.flag==false">An error occurred in the
+                    registration process.<br/>Please contact support
+                </div>
+                <div class="alert alert-success" role="alert" ng-if="message.flag">Thank you for registering.
+                    <br/>Please wait for confirmation email
+                </div>
                 <form class="margin-bottom-0" name="signUpForm">
                     <!--<label class="control-label">Name</label>
                     <div class="row row-space-10">
@@ -72,9 +77,9 @@
                                 data-ng-click="signUpUser()">Sign Up
                         </button>
                     </div>
-                    <div class="m-t-20 m-b-40 p-b-40">
+                    <!--<div class="m-t-20 m-b-40 p-b-40">
                         Already a member? Click <a href="#/login">here</a> to login.
-                    </div>
+                    </div>-->
                     <hr/>
                     <p class="text-center text-inverse">
                         &copy; SentaData Right Reserved 2015
