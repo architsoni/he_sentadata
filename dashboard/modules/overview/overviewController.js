@@ -61,16 +61,19 @@ angular.module("senta-overview")
 
                 OverviewServices.retrieveOverviewLineChart(json/*{type: 'activeUser', dateRangeType: dateRangeType}*/)
                     .then(function (result) {
-//                        if (result.flag) {
-                        var lineChartData = prepareLineChart(result.active_devices, 'date', 'transmissions');
                         panelReloadStop(false, "#line-chart");
-                        resetChartById("line-chart");
-                        var ctx = document.getElementById("line-chart").getContext('2d');
-                        var lineChart = new Chart(ctx).Line(lineChartData, {
-                            animation: animationOption
-                        });
-                        lineChart.update();
-//                        }
+                        if (result.active_devices.length) {
+                            var lineChartData = prepareLineChart(result.active_devices, 'date', 'transmissions');
+                            resetChartById("line-chart");
+                            var ctx = document.getElementById("line-chart").getContext('2d');
+                            var lineChart = new Chart(ctx).Line(lineChartData, {
+                                animation: animationOption
+                            });
+                            lineChart.update();
+                        }
+                        else {
+                            noDataFound("line-chart",'overview_chart_noData');
+                        }
 
                     }, function (error) {
                         alert(error);
@@ -91,13 +94,18 @@ angular.module("senta-overview")
                 OverviewServices.retrieveOverviewLineChart(json)
                     .then(function (result) {
 //                        if (result.flag) {
-                        var lineChartData = prepareLineChart(result.new_devices, 'date', 'devices');
                         panelReloadStop(false, "#line-chart1");
-                        resetChartById("line-chart1");
-                        var ctx = document.getElementById("line-chart1").getContext('2d');
-                        var lineChart = new Chart(ctx).Line(lineChartData, {
-                            animation: animationOption
-                        });
+                        if (result.new_devices.length) {
+                            var lineChartData = prepareLineChart(result.new_devices, 'date', 'devices');
+                            resetChartById("line-chart1");
+                            var ctx = document.getElementById("line-chart1").getContext('2d');
+                            var lineChart = new Chart(ctx).Line(lineChartData, {
+                                animation: animationOption
+                            });
+                        } else {
+                            noDataFound('line-chart1','overview_chart_noData');
+                        }
+
 //                        }
 
                     }, function (error) {
@@ -117,13 +125,18 @@ angular.module("senta-overview")
                 OverviewServices.retrieveOverviewLineChart(json)
                     .then(function (result) {
 //                        if (result.flag) {
-                        var lineChartData = prepareLineChart(result.chart1, 'date', 'transmissions');
                         panelReloadStop(false, "#line-chart2");
-                        resetChartById("line-chart2");
-                        var ctx = document.getElementById("line-chart2").getContext('2d');
-                        var lineChart = new Chart(ctx).Line(lineChartData, {
-                            animation: animationOption
-                        });
+                        if (result.chart1 && result.chart1.length) {
+                            var lineChartData = prepareLineChart(result.chart1, 'date', 'transmissions');
+                            resetChartById("line-chart2");
+                            var ctx = document.getElementById("line-chart2").getContext('2d');
+                            var lineChart = new Chart(ctx).Line(lineChartData, {
+                                animation: animationOption
+                            });
+                        } else {
+                            noDataFound("line-chart2",'overview_chart_noData');
+                        }
+
 //                        }
 
                     }, function (error) {

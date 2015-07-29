@@ -6,13 +6,14 @@ angular.module("senta-login")
     .controller('LoginController',
         ["$rootScope", "$scope", "$window", "$state", '$http', "$cookies", '$location', function ($rootScope, $scope, $window, $state, $http, $cookies, $location) {
 
-            var loginJson = {"login": {"username": "", "password": ""}, "operation": {"object": "XaUser", "event": "XaUserLoginFrm"}, "params": [
-                {"name": "email", "value": "demo@sentadata.com"},
-                {"name": "password", "value": "DDdem0"}
-            ]};
+
             $scope.errorMsg = {};
 
             if (!$rootScope.notLoginState) {
+                var loginJson = {"login": {"username": "", "password": ""}, "operation": {"object": "XaUser", "event": "XaUserLoginFrm"}, "params": [
+                    {"name": "email", "value": "demo@sentadata.com"},
+                    {"name": "password", "value": "DDdem0"}
+                ]};
                 $http.post("https://demo1.sentadata.com/SentaDCaaS.cgi", "WsJson=yes&WsJsonData=" + JSON.stringify(loginJson))
                     .then(function (result) {
                         if (result.data && result.data.message === "login form")

@@ -73,6 +73,11 @@ function resetChartById(id) {
     jQuery('#' + id).remove();
     parent.append('<canvas id="' + id + '"><canvas>');
 }
+function noDataFound(id, className) {
+    var parent = jQuery('#' + id).parent();
+    jQuery('#' + id).remove();
+    parent.append('<div id="' + id + '" class="noDataMsg ' + className + '">Data not found</div>');
+}
 
 var createReqJSONWithToken = function (token, params) {
     var data = {"login": {"username": "", "password": "", token: token}};

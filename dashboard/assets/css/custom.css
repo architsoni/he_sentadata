@@ -11,3 +11,11 @@ Stylesheet: Main Stylesheet for SENTADATA DASHBOARD
   width: 83%;
   margin-top: -10px;
 }
+
+.noDataMsg{
+    color: #dadada;
+    text-align: center;
+}
+.overview_chart_noData{
+    padding: 23% 0px;
+}

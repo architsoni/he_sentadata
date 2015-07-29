@@ -21,7 +21,10 @@ angular.module('senta-app', ["ui.router", "oc.lazyLoad", "senta-overview", "sent
                     if (response.data.message == 'login form') {
                         $cookies.remove('token');
                         $cookies.remove('sentaApp');
-                        $location.path('/login');
+                        if ($location.path() === '/signUp')
+                            $location.path('/signUp');
+                        else
+                            $location.path('/login');
                         return $q.reject(response);
                     }
                     return response;

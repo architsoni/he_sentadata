@@ -1,52 +1,78 @@
-<div class="login-cover">
-    <div class="login-cover-image"><img src="assets/img/login-bg/bg-1.jpg" data-id="login-cover-image" alt=""/></div>
-    <div class="login-cover-bg"></div>
-</div>
-<!-- begin #page-container -->
 <div id="page-container" class="fade">
-    <!-- begin login -->
-    <div class="login login-v2" data-pageload-addclass="animated fadeIn">
-        <!-- begin brand -->
-        <div class="login-header">
-            <div class="brand">
-                SentaData
-
-            </div>
-            <div class="icon">
-                <i class="fa fa-sign-in"></i>
+    <!-- begin register -->
+    <div class="register register-with-news-feed">
+        <!-- begin news-feed -->
+        <div class="news-feed">
+            <div class="news-image">
+                <img src="assets/img/login-bg/bg-8.jpg" alt=""/>
             </div>
         </div>
-        <!-- end brand -->
+        <!-- end news-feed -->
+        <!-- begin right-content -->
+        <div class="right-content">
+            <!-- begin register-header -->
+            <h1 class="register-header">
+                Log In
+                <small>Login in Your Senta Data Account.</small>
+            </h1>
+            <!-- end register-header -->
+            <!-- begin register-content -->
+            <div class="register-content">
+                <div class="alert alert-danger" role="alert" ng-if="errorMsg.flag">
+                    <a class="alert-link">{{errorMsg.message}}</a>
+                </div>
+                <form class="margin-bottom-0" name="loginForm" ng-submit="login(credentials)">
 
-        <div class="alert alert-danger" role="alert" ng-if="errorMsg.flag">
-            <a class="alert-link">{{errorMsg.message}}</a>
+                    <label class="control-label">Email</label>
+
+                    <div class="row m-b-15">
+                        <div class="col-md-12">
+                            <input type="email" class="form-control" placeholder="Email address"
+                                   required
+                                   ng-model="credentials.username"/>
+                        </div>
+                    </div>
+
+                    <label class="control-label">Password</label>
+
+                    <div class="row m-b-15">
+                        <div class="col-md-12">
+                            <input type="password" class="form-control" placeholder="Password"
+                                   ng-model="credentials.password"
+                                   required/>
+                        </div>
+                    </div>
+
+                    <div class="checkbox m-b-20">
+                        <label>
+                            <input type="checkbox"/> Remember Me
+                        </label>
+                    </div>
+
+                    <!--<div class="checkbox m-b-30">
+                        <label>
+                            <input type="checkbox" ng-model="signUp.agreement"/> By clicking Sign Up, you agree to our
+                            <a href="#">Terms</a> and
+                            that you have read our <a href="#">Data Policy</a>, including our <a href="#">Cookie Use</a>.
+                        </label>
+                    </div>-->
+                    <div class="register-buttons">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Sign me in</button>
+                    </div>
+                    <div class="m-t-20 m-b-40 p-b-40">
+                        Not a member yet? Click <a href="#/signUp">here</a> to register.
+                    </div>
+                    <hr/>
+                    <p class="text-center text-inverse">
+                        &copy; SentaData Right Reserved 2015
+                    </p>
+                </form>
+            </div>
+            <!-- end register-content -->
         </div>
-
-        <div class="login-content">
-
-            <form name="loginForm" ng-submit="login(credentials)">
-                <div class="form-group m-b-20">
-                    <input type="text" class="form-control input-lg" placeholder="Email Address"
-                           ng-model="credentials.username"/>
-                </div>
-                <div class="form-group m-b-20">
-                    <input type="password" class="form-control input-lg" placeholder="Password"
-                           ng-model="credentials.password"/>
-                </div>
-                <div class="checkbox m-b-20">
-                    <label>
-                        <input type="checkbox"/> Remember Me
-                    </label>
-                </div>
-                <div class="login-buttons">
-                    <button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
-                </div>
-                <div class="m-t-20">
-                    Not a member yet? Click <a href="#/signUp">here</a> to register.
-                </div>
-            </form>
-        </div>
-
+        <!-- end right-content -->
     </div>
-    <!-- end login -->
+    <!-- end register -->
+
+
 </div>

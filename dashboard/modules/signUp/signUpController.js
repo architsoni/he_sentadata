@@ -4,10 +4,32 @@
 
 angular.module("senta-login")
     .controller('SignUpController',
-        ["$scope", "$window", "$state", '$http', function ($scope, $window, $state, $http) {
+        ["$rootScope", "$scope", "$cookies", "$state", '$http', function ($rootScope, $scope, $cookies, $state, $http) {
             $scope.signUp = {};
+
+            if (!$rootScope.notLoginState) {
+                var loginJson = {"login": {"username": "", "password": ""}, "operation": {"object": "XaUser", "event": "XaUserLoginFrm"}, "params": [
+                    {"name": "email", "value": "demo@sentadata.com"},
+                    {"name": "password", "value": "DDdem0"}
+                ]};
+
+                $http.post("https://demo1.sentadata.com/SentaDCaaS.cgi", "WsJson=yes&WsJsonData=" + JSON.stringify(loginJson))
+                    .then(function (result) {
+                        if (result.data && result.data.message === "login form")
+                            $cookies.put('token', result.data.token);
+                    }, function (error) {
+                        if (error.data && error.data.message === "login form")
+                            $cookies.put('token', error.data.token);
+                    });
+            }
+
+
             $scope.signUpUser = function (params) {
-                var json = 'WsJson=yes&WsJsonData={"login": {"username": "demo@sentadata.com", "password": "DDdem0"},"operation": {"object":"XaUser", "event":"XaUserRegistration"},"params":[ {"name":"email","value":"' + $scope.signUp.email + '"},{"name":"password1","value":"' + $scope.signUp.password + '"},{"name":"password2","value":"' + $scope.signUp.confirmPassword + '"} ]}';
+                var json = createReqJSONWithToken($cookies.get('token'), {"operation": {"object": "XaUser", "event": "XaUserRegistration"}, "params": [
+                    {"name": "email", "value": $scope.signUp.email },
+                    {"name": "password1", "value": $scope.signUp.password },
+                    {"name": "password2", "value": $scope.signUp.confirmPassword }
+                ]});
                 $http.post(" http://demo1.sentadata.com/SentaDCaaS.cgi", json)
                     .success(function (result) {
                         if (result.result === 'success') {
