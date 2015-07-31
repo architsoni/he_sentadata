@@ -38,7 +38,7 @@ angular.module("senta-login")
                         }
                         else if (result.result === 'error') {
                             $scope.signUp = {};
-                            $scope.message = {flag: false};
+                            $scope.message = {flag: false,message:result.message};
                         }
 
                     })

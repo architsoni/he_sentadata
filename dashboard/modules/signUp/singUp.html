@@ -18,8 +18,7 @@
             <!-- end register-header -->
             <!-- begin register-content -->
             <div class="register-content">
-                <div class="alert alert-danger" role="alert" ng-if="message.flag==false">An error occurred in the
-                    registration process.<br/>Please contact support
+                <div class="alert alert-danger" role="alert" ng-if="message.flag==false">{{message.message}}
                 </div>
                 <div class="alert alert-success" role="alert" ng-if="message.flag">Thank you for registering.
                     <br/>Please wait for confirmation email
