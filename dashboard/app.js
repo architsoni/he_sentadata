@@ -51,6 +51,7 @@ angular.module('senta-app', ["ui.router", "oc.lazyLoad", "senta-overview", "sent
             }
             else {
 //                event.preventDefault();
+                $rootScope.currentUser={name:$cookies.get('currentUserName')};
                 $rootScope.notLoginState = true;
             }
 

@@ -4,7 +4,7 @@
 
 angular.module('senta-app')
     .controller("StartUpController",
-        ["$scope", "$rootScope", "$window", "$state", "$cookies","$http", function ($scope, $rootScope, $window, $state, $cookies,$http) {
+        ["$scope", "$rootScope", "$window", "$state", "$cookies", "$http", function ($scope, $rootScope, $window, $state, $cookies, $http) {
 
             Chart.defaults.global = {
                 animation: true,
@@ -65,6 +65,8 @@ angular.module('senta-app')
                     .success(function (result) {
                         $cookies.remove('sentaApp');
                         $cookies.remove('token');
+                        $cookies.remove('currentUserName');
+
                         $state.transitionTo('login');
 
                     })

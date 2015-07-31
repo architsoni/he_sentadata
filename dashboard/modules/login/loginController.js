@@ -16,8 +16,9 @@ angular.module("senta-login")
                 ]};
                 $http.post("https://demo1.sentadata.com/SentaDCaaS.cgi", "WsJson=yes&WsJsonData=" + JSON.stringify(loginJson))
                     .then(function (result) {
-                        if (result.data && result.data.message === "login form")
+                        if (result.data && result.data.message === "login form"){
                             $cookies.put('token', result.data.token);
+                        }
                     }, function (error) {
                         if (error.data && error.data.message === "login form")
                             $cookies.put('token', error.data.token);
@@ -39,7 +40,7 @@ angular.module("senta-login")
                         if (result.result === "success") {
                             $scope.errorMsg = {};
                             $cookies.put('sentaApp', '12345678910');
-
+                            $cookies.put('currentUserName', result.message.replace("authenticated",'').trim());
                             //                        $window.sessionStorage.token = "12345678910";
                             $state.transitionTo('overview');
                         } else {
