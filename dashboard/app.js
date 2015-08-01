@@ -18,9 +18,8 @@ angular.module('senta-app', ["ui.router", "oc.lazyLoad", "senta-overview", "sent
                 },
                 response: function (response) {
 
-                    if (response.data.message == 'login form') {
+                    if (response.data.result === 'error' && response.data.message && response.data.message.indexOf('User Not Authorized To Execute Action Or Action Does Not Exist') > -1) {
                         $cookies.remove('token');
-                        $cookies.remove('sentaApp');
                         if ($location.path() === '/signUp')
                             $location.path('/signUp');
                         else
@@ -38,7 +37,7 @@ angular.module('senta-app', ["ui.router", "oc.lazyLoad", "senta-overview", "sent
         $rootScope.notLoginState = false;
         $rootScope.$on('$stateChangeStart', function (event, nextState, toParam, currentState) {
 
-            if ((!$cookies.get('sentaApp') || !$cookies.get('token')) && (nextState.name != 'login' && nextState.name != 'signUp')) {
+            if ((!$cookies.get('token')) && (nextState.name != 'login' && nextState.name != 'signUp')) {
                 $rootScope.notLoginState = false;
 //                event.preventDefault();
 //                $state.go('login');
@@ -51,7 +50,7 @@ angular.module('senta-app', ["ui.router", "oc.lazyLoad", "senta-overview", "sent
             }
             else {
 //                event.preventDefault();
-                $rootScope.currentUser={name:$cookies.get('currentUserName')};
+                $rootScope.currentUser = {name: $cookies.get('currentUserName')};
                 $rootScope.notLoginState = true;
             }
 

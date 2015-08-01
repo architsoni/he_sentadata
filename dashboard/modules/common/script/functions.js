@@ -80,7 +80,7 @@ function noDataFound(id, className) {
 }
 
 var createReqJSONWithToken = function (token, params) {
-    var data = {"login": {"username": "", "password": "", token: token}};
+    var data = {"login": {"username": "", "password": "", token: token == false ? "" : token}};
     jQuery.extend(data, params);
 
     return "WsJson=yes&WsJsonData=" + JSON.stringify(data);

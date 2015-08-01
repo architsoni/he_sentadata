@@ -63,7 +63,7 @@ angular.module('senta-app')
 
                 $http.post("https://demo1.sentadata.com/SentaDCaaS.cgi", json)
                     .success(function (result) {
-                        $cookies.remove('sentaApp');
+//                        $cookies.remove('sentaApp');
                         $cookies.remove('token');
                         $cookies.remove('currentUserName');
 
