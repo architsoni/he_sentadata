@@ -58,8 +58,17 @@ angular.module("senta-login")
                     })
             };
 
+            function initParams() {
+                var params = $location.$$search;
+                if(params.token){
+                    $scope.notToShowRegister=true;
+                }
+            }
+
             angular.element(document).ready(function () {
+                $cookies.remove('token');
                 App.init();
                 handleLoginPageChangeBackground();
+                initParams();
             });
         }])

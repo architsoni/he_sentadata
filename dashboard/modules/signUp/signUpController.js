@@ -6,6 +6,7 @@ angular.module("senta-login")
     .controller('SignUpController',
         ["$rootScope", "$scope", "$cookies", "$state", '$http', function ($rootScope, $scope, $cookies, $state, $http) {
             $scope.signUp = {};
+            var token='';
 
             if (!$rootScope.notLoginState) {
                 var loginJson = {"login": {"username": "", "password": ""}, "operation": {"object": "XaUser", "event": "XaUserLoginFrm"}, "params": [
@@ -16,16 +17,16 @@ angular.module("senta-login")
                 $http.post("https://demo1.sentadata.com/SentaDCaaS.cgi", "WsJson=yes&WsJsonData=" + JSON.stringify(loginJson))
                     .then(function (result) {
                         if (result.data && result.data.message === "login form")
-                            $cookies.put('token', result.data.token);
+                            token=result.data.token;
                     }, function (error) {
                         if (error.data && error.data.message === "login form")
-                            $cookies.put('token', error.data.token);
+                            token=error.data.token;
                     });
             }
 
 
             $scope.signUpUser = function (params) {
-                var json = createReqJSONWithToken($cookies.get('token'), {"operation": {"object": "XaUser", "event": "XaUserRegistration"}, "params": [
+                var json = createReqJSONWithToken(token, {"operation": {"object": "XaUser", "event": "XaUserRegistration"}, "params": [
                     {"name": "email", "value": $scope.signUp.email },
                     {"name": "password1", "value": $scope.signUp.password },
                     {"name": "password2", "value": $scope.signUp.confirmPassword }
