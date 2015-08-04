@@ -17,5 +17,8 @@ Stylesheet: Main Stylesheet for SENTADATA DASHBOARD
     text-align: center;
 }
 .overview_chart_noData{
-    padding: 23% 0px;
+    padding: 29% 0px;
+}
+.overviewChart{
+    height: 200px;
 }

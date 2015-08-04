@@ -45,6 +45,16 @@ var handleLoginPageChangeBackground = function () {
     });
 };
 
+var prepareTimeSeriesData = function (result, xLabel, yLabel) {
+    var data = [];
+    for (var i in result) {
+        data.push([new Date(result[i][xLabel]).getTime(), Number(result[i][yLabel])]);
+    }
+
+    return data;
+}
+
+
 var prepareLineChart = function (result, xLabel, yLabel) {
     var labels = [], data = [];
     for (var i in result) {
@@ -84,4 +94,75 @@ var createReqJSONWithToken = function (token, params) {
     jQuery.extend(data, params);
 
     return "WsJson=yes&WsJsonData=" + JSON.stringify(data);
+}
+
+var highchartDefination = {
+    getTimeSeriesChart: function (id, data, seriesName) {
+
+        $(id).highcharts('StockChart', {
+            chart: {
+                type: 'area'
+            },
+            rangeSelector: {
+                selected: 1,
+                inputBoxHeight: 10
+            },
+            scrollbar: {
+                height: 5
+            },
+            navigator: {
+                height: 20,
+                maskFill:'rgba(222, 240, 240, 0.48)'
+            },
+            yAxis: {
+                gridLineWidth: 0,
+                labels: {
+                    enabled: false
+                }
+            },
+            title: {
+                text: null
+            },
+            plotOptions: {
+                area: {
+                    fillColor: {
+                        linearGradient: {
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops: [
+                            [0, '#008a8a'],
+                            [1, Highcharts.Color('#008a8a').setOpacity(0).get('rgba')]
+                        ]
+                    },
+                    marker: {
+                        radius: 2
+                    },
+                    lineWidth: 1,
+                    states: {
+                        hover: {
+                            lineWidth: 1
+                        }
+                    },
+                    threshold: null
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [
+                {
+                    name: seriesName,
+                    data: data,
+                    tooltip: {
+                        valueDecimals: 2
+                    }
+                }
+            ]
+        });
+
+
+    }
 }

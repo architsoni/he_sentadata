@@ -75,11 +75,11 @@
 
 <!-- begin row -->
 <div class="row">
-    <div class="col-md-4" >
+    <div class="col-md-4">
         <div class="panel panel-inverse" data-sortable-id="chart-js-2">
             <div class="panel-heading">
                 <div class="pull-right">
-                    <button class="btn-xs btn btn-success"
+                    <!--<button class="btn-xs btn btn-success"
                             data-ng-class="{'active':activeUser.dateRangeType==dateRangeType['DAY']}"
                             ng-click="overViewFn.retrieveActiveUsers(false,dateRangeType['DAY'])">Daily
                     </button>
@@ -90,14 +90,14 @@
                     <button class="btn-xs btn  btn-success"
                             data-ng-class="{'active':activeUser.dateRangeType==dateRangeType['MONTH']}"
                             ng-click="overViewFn.retrieveActiveUsers(false,dateRangeType['MONTH'])">Yearly
-                    </button>
+                    </button>-->
                 </div>
                 <h4 class="panel-title ">Active Users</h4>
 
             </div>
             <div class="panel-body">
-                <div>
-                    <canvas id="line-chart"></canvas>
+                <div id="line-chart" class="overviewChart">
+                    <!--<canvas ></canvas>-->
                 </div>
             </div>
         </div>
@@ -106,8 +106,8 @@
     <div class="col-md-4">
         <div class="panel panel-inverse" data-sortable-id="flot-chart-5">
             <div class="panel-heading">
-                <div class="pull-right" >
-                    <button class="btn-xs btn btn-success"
+                <div class="pull-right">
+                    <!--<button class="btn-xs btn btn-success"
                             data-ng-class="{'active':installRate.dateRangeType==dateRangeType['DAY']}"
                             ng-click="overViewFn.retrieveInstallRate(false,dateRangeType['DAY'])">Daily
                     </button>
@@ -118,24 +118,24 @@
                     <button class="btn-xs btn  btn-success"
                             data-ng-class="{'active':installRate.dateRangeType==dateRangeType['MONTH']}"
                             ng-click="overViewFn.retrieveInstallRate(false,dateRangeType['MONTH'])">Yearly
-                    </button>
+                    </button>-->
                 </div>
                 <h4 class="panel-title">Install Rate</h4>
             </div>
             <div class="panel-body">
-                <div>
-                    <canvas id="line-chart1"></canvas>
+                <div id="line-chart1" class="overviewChart">
                 </div>
+
             </div>
         </div>
     </div>
     <!-- end col-6 -->
     <!-- begin col-6 -->
-    <div class="col-md-4" >
+    <div class="col-md-4">
         <div class="panel panel-inverse" data-sortable-id="flot-chart-5">
             <div class="panel-heading">
-                <div class="pull-right" >
-                    <button class="btn-xs btn btn-success"
+                <div class="pull-right">
+                    <!--<button class="btn-xs btn btn-success"
                             data-ng-class="{'active':uninstallRate.dateRangeType==dateRangeType['DAY']}"
                             ng-click="overViewFn.retrieveUnInstallRate(false,dateRangeType['DAY'])">Daily
                     </button>
@@ -146,13 +146,12 @@
                     <button class="btn-xs btn  btn-success"
                             data-ng-class="{'active':uninstallRate.dateRangeType==dateRangeType['MONTH']}"
                             ng-click="overViewFn.retrieveUnInstallRate(false,dateRangeType['MONTH'])">Yearly
-                    </button>
+                    </button>-->
                 </div>
                 <h4 class="panel-title">Uninstall Rate</h4>
             </div>
             <div class="panel-body">
-                <div>
-                    <canvas id="line-chart2"></canvas>
+                <div id="line-chart2" class="overviewChart">
                 </div>
             </div>
         </div>

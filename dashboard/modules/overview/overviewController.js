@@ -54,7 +54,7 @@ angular.module("senta-overview")
 
                 var json = createReqJSONWithToken($cookies.get("token"), {  "operation": {"object": "XaPages", "event": "XaDashboard"}, "params": [
                     {"name": "output", "value": "active_devices"},
-                    {"name": "start_day", "value": "2015-07-01"},
+                    {"name": "start_day", "value": "2015-05-01"},
                     {"name": "end_day", "value": "2015-07-20"},
                     {"name": "period", "value": dateRangeType }
                 ]});
@@ -63,16 +63,18 @@ angular.module("senta-overview")
                     .then(function (result) {
                         panelReloadStop(false, "#line-chart");
                         if (result.active_devices.length) {
-                            var lineChartData = prepareLineChart(result.active_devices, 'date', 'transmissions');
-                            resetChartById("line-chart");
-                            var ctx = document.getElementById("line-chart").getContext('2d');
-                            var lineChart = new Chart(ctx).Line(lineChartData, {
-                                animation: animationOption
-                            });
-                            lineChart.update();
+                            /*var lineChartData = prepareLineChart(result.active_devices, 'date', 'transmissions');
+                             resetChartById("line-chart");
+                             var ctx = document.getElementById("line-chart").getContext('2d');
+                             var lineChart = new Chart(ctx).Line(lineChartData, {
+                             animation: animationOption
+                             });
+                             lineChart.update();*/
+                            jQuery('#line-chart').empty();
+                            highchartDefination.getTimeSeriesChart("#line-chart",prepareTimeSeriesData(result.active_devices,'date', 'transmissions'),'Transmissions');
                         }
                         else {
-                            noDataFound("line-chart",'overview_chart_noData');
+                            noDataFound("line-chart", 'overview_chart_noData');
                         }
 
                     }, function (error) {
@@ -86,7 +88,7 @@ angular.module("senta-overview")
 
                 var json = createReqJSONWithToken($cookies.get("token"), {  "operation": {"object": "XaPages", "event": "XaDashboard"}, "params": [
                     {"name": "output", "value": "new_devices"},
-                    {"name": "start_day", "value": "2015-05-01"},
+                    {"name": "start_day", "value": "2015-01-01"},
                     {"name": "end_day", "value": "2015-07-15"},
                     {"name": "period", "value": dateRangeType }
                 ]});
@@ -96,14 +98,16 @@ angular.module("senta-overview")
 //                        if (result.flag) {
                         panelReloadStop(false, "#line-chart1");
                         if (result.new_devices.length) {
-                            var lineChartData = prepareLineChart(result.new_devices, 'date', 'devices');
+                            /*var lineChartData = prepareLineChart(result.new_devices, 'date', 'devices');
                             resetChartById("line-chart1");
                             var ctx = document.getElementById("line-chart1").getContext('2d');
                             var lineChart = new Chart(ctx).Line(lineChartData, {
                                 animation: animationOption
-                            });
+                            });*/
+                            jQuery('#line-chart1').empty();
+                            highchartDefination.getTimeSeriesChart("#line-chart1",prepareTimeSeriesData(result.new_devices, 'date', 'devices'),'Devices');
                         } else {
-                            noDataFound('line-chart1','overview_chart_noData');
+                            noDataFound('line-chart1', 'overview_chart_noData');
                         }
 
 //                        }
@@ -119,7 +123,7 @@ angular.module("senta-overview")
 
                 var json = createReqJSONWithToken($cookies.get("token"), {  "operation": {"object": "XaPages", "event": "XaDashboard"}, "params": [
                     {"name": "output", "value": "chart1"},
-                    {"name": "start_day", "value": "2015-07-01"}
+                    {"name": "start_day", "value": "2015-01-01"}
                 ]});
 
                 OverviewServices.retrieveOverviewLineChart(json)
@@ -127,14 +131,16 @@ angular.module("senta-overview")
 //                        if (result.flag) {
                         panelReloadStop(false, "#line-chart2");
                         if (result.chart1 && result.chart1.length) {
-                            var lineChartData = prepareLineChart(result.chart1, 'date', 'transmissions');
+                            /*var lineChartData = prepareLineChart(result.chart1, 'date', 'transmissions');
                             resetChartById("line-chart2");
                             var ctx = document.getElementById("line-chart2").getContext('2d');
                             var lineChart = new Chart(ctx).Line(lineChartData, {
                                 animation: animationOption
-                            });
+                            });*/
+                            jQuery('#line-chart2').empty();
+                            highchartDefination.getTimeSeriesChart("#line-chart2",prepareTimeSeriesData(result.chart1, 'date', 'transmissions'),'Transmissions');
                         } else {
-                            noDataFound("line-chart2",'overview_chart_noData');
+                            noDataFound("line-chart2", 'overview_chart_noData');
                         }
 
 //                        }
