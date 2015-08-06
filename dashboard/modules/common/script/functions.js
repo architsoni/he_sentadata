@@ -101,7 +101,7 @@ var highchartDefination = {
 
         $(id).highcharts('StockChart', {
             chart: {
-                type: 'area'
+                type: 'line'
             },
             rangeSelector: {
                 selected: 1,
@@ -124,7 +124,7 @@ var highchartDefination = {
                 text: null
             },
             plotOptions: {
-                area: {
+                /*area: {
                     fillColor: {
                         linearGradient: {
                             x1: 0,
@@ -147,7 +147,7 @@ var highchartDefination = {
                         }
                     },
                     threshold: null
-                }
+                }*/
             },
             credits: {
                 enabled: false
@@ -158,7 +158,8 @@ var highchartDefination = {
                     data: data,
                     tooltip: {
                         valueDecimals: 2
-                    }
+                    },
+                    color:'#008a8a'
                 }
             ]
         });
