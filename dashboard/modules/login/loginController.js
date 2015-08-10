@@ -60,8 +60,10 @@ angular.module("senta-login")
 
             function initParams() {
                 var params = $location.$$search;
-                if(params.token){
+                if(params.token && params.email && params.database){
                     $scope.notToShowRegister=true;
+                }else{
+                    $scope.notToShowRegister=false;
                 }
             }
 

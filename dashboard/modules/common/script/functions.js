@@ -159,7 +159,22 @@ var highchartDefination = {
                     tooltip: {
                         valueDecimals: 2
                     },
-                    color:'#008a8a'
+                    color:'#008a8a',
+                    dataGrouping: {
+                        groupPixelWidth: 40,
+                        approximation: "average",
+                        enabled: true,
+                        units: [[
+                            'day',
+                            [1]
+                        ],[
+                            'week',
+                            [1]
+                        ],[
+                            'month',
+                            [1,3,6]
+                        ]]
+                    }
                 }
             ]
         });
