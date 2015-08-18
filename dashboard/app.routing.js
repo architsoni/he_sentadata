@@ -16,9 +16,9 @@ angular.module('senta-app')
                 })
                 .state('confirm', {
                     url: '/confirm',
-                    templateUrl: "modules/login/login.html",
+                    templateUrl: "modules/confirmation/confirm.html",
                     controller: "ConfirmController",
-                    resolve: load(['modules/login/confirmController.js'])
+                    resolve: load(['modules/confirmation/confirmController.js'])
                 })
                 .state('signUp', {
                     url: '/signUp',
