@@ -4,7 +4,7 @@
 
 angular.module("senta-login")
     .controller('LoginController',
-        ["$rootScope", "$scope", "$window", "$state", '$http', "$cookies", '$location', function ($rootScope, $scope, $window, $state, $http, $cookies, $location) {
+        ["$rootScope", "$scope", "$window", "$state", '$http', "$cookies", '$location', 'ApplicationConstants', function ($rootScope, $scope, $window, $state, $http, $cookies, $location, ApplicationConstants) {
 
 
             $scope.errorMsg = {};
@@ -43,11 +43,11 @@ angular.module("senta-login")
             };
 
             function initParams() {
-                var params = $location.$$search;
-                if (params.token && params.email && params.database) {
-                    $scope.notToShowRegister = true;
-                } else {
+
+                if (ApplicationConstants.defaultDomain == $window.location.host) {
                     $scope.notToShowRegister = false;
+                } else {
+                    $scope.notToShowRegister = true;
                 }
             }
 
