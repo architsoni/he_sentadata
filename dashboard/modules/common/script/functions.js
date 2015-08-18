@@ -112,7 +112,7 @@ var highchartDefination = {
             },
             navigator: {
                 height: 20,
-                maskFill:'rgba(222, 240, 240, 0.48)'
+                maskFill: 'rgba(222, 240, 240, 0.48)'
             },
             yAxis: {
                 gridLineWidth: 0,
@@ -125,29 +125,29 @@ var highchartDefination = {
             },
             plotOptions: {
                 /*area: {
-                    fillColor: {
-                        linearGradient: {
-                            x1: 0,
-                            y1: 0,
-                            x2: 0,
-                            y2: 1
-                        },
-                        stops: [
-                            [0, '#008a8a'],
-                            [1, Highcharts.Color('#008a8a').setOpacity(0).get('rgba')]
-                        ]
-                    },
-                    marker: {
-                        radius: 2
-                    },
-                    lineWidth: 1,
-                    states: {
-                        hover: {
-                            lineWidth: 1
-                        }
-                    },
-                    threshold: null
-                }*/
+                 fillColor: {
+                 linearGradient: {
+                 x1: 0,
+                 y1: 0,
+                 x2: 0,
+                 y2: 1
+                 },
+                 stops: [
+                 [0, '#008a8a'],
+                 [1, Highcharts.Color('#008a8a').setOpacity(0).get('rgba')]
+                 ]
+                 },
+                 marker: {
+                 radius: 2
+                 },
+                 lineWidth: 1,
+                 states: {
+                 hover: {
+                 lineWidth: 1
+                 }
+                 },
+                 threshold: null
+                 }*/
             },
             credits: {
                 enabled: false
@@ -159,21 +159,25 @@ var highchartDefination = {
                     tooltip: {
                         valueDecimals: 2
                     },
-                    color:'#008a8a',
+                    color: '#008a8a',
                     dataGrouping: {
                         groupPixelWidth: 40,
                         approximation: "average",
                         enabled: true,
-                        units: [[
-                            'day',
-                            [1]
-                        ],[
-                            'week',
-                            [1]
-                        ],[
-                            'month',
-                            [1,3,6]
-                        ]]
+                        units: [
+                            [
+                                'day',
+                                [1]
+                            ],
+                            [
+                                'week',
+                                [1]
+                            ],
+                            [
+                                'month',
+                                [1, 3, 6]
+                            ]
+                        ]
                     }
                 }
             ]
@@ -181,4 +185,15 @@ var highchartDefination = {
 
 
     }
+}
+function convertToProperJson(result) {
+    var obj = {};
+    result = result.replace(/{/g, '');
+    result = result.replace(/}/g, '');
+    result = result.split(",");
+    obj.result = result[0].split(':')[1].replace(/"/g,'');
+    obj.message = result[1].substr(11).replace(/""/g,'');
+
+    obj.message=obj.message.substr(0,obj.message.length-2);
+    return obj;
 }

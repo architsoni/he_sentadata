@@ -1,15 +1,18 @@
 /**
+ * Created by Shivali on 8/18/15.
+ */
+
+/**
  * Created by Shivali on 7/7/15.
  */
 
 angular.module("senta-login")
-    .controller('LoginController',
+    .controller('ConfirmController',
         ["$rootScope", "$scope", "$window", "$state", '$http', "$cookies", '$location', function ($rootScope, $scope, $window, $state, $http, $cookies, $location) {
 
 
             $scope.errorMsg = {};
-            $scope.message = {};
-
+            $scope.message={};
 
             $scope.login = function (params) {
 
@@ -42,12 +45,35 @@ angular.module("senta-login")
                     })
             };
 
+            function validateUser(params) {
+                var json = createReqJSONWithToken(false, {"operation": {"object": "XaUser", "event": "XaUserRegistrationConfirm"},
+                    "params": [
+                        {"name": "database", "value": params.database},
+                        {"name": "email", "value": params.email},
+                        {"name": "token", "value": params.token}
+                    ]});
+
+                jQuery.ajax({url: "https://demo1.sentadata.com/SentaDCaaS.cgi", data: json, method: "POST"})
+                    .success(function (result) {
+                        result = convertToProperJson(result);
+                        $scope.message = {showConfirm: true};
+                        $scope.message.confirmFlag = (result.result == 'success');
+                        $scope.message.message = result.message;
+                        if(!$scope.$root.$$phase)$scope.$apply();
+                    })
+                    .error(function (error) {
+
+                    })
+
+            }
+
             function initParams() {
                 var params = $location.$$search;
                 if (params.token && params.email && params.database) {
                     $scope.notToShowRegister = true;
+                    validateUser(params);
                 } else {
-                    $scope.notToShowRegister = false;
+                    $state.transitionTo('login');
                 }
             }
 

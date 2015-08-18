@@ -18,6 +18,14 @@
             <!-- end register-header -->
             <!-- begin register-content -->
             <div class="register-content">
+
+                <div class="alert " role="alert" ng-if="message.showConfirm"
+                     data-ng-class="{'alert-info':message.confirmFlag,'alert-danger':!message.confirmFlag}">
+                    <!--<a class="alert-link">{{message.message}}</a>-->
+                    <span ng-bind-html="message.message"></span>
+
+                </div>
+
                 <div class="alert alert-danger" role="alert" ng-if="errorMsg.flag">
                     <a class="alert-link">{{errorMsg.message}}</a>
                 </div>

@@ -5,7 +5,7 @@ angular.module("senta-overview", []);
 angular.module("senta-capture", []);
 angular.module("senta-login", []);
 
-angular.module('senta-app', ["ui.router", "oc.lazyLoad", "senta-overview", "senta-capture", "senta-login", 'ngCookies'])
+angular.module('senta-app', ["ui.router", "oc.lazyLoad", 'ngSanitize', "senta-overview", "senta-capture", "senta-login", 'ngCookies'])
     .factory('authHttpInterceptor',
         ['$cookies', '$location', '$q' , function ($cookies, $location, $q) {
             return {
@@ -22,6 +22,8 @@ angular.module('senta-app', ["ui.router", "oc.lazyLoad", "senta-overview", "sent
                         $cookies.remove('token');
                         if ($location.path() === '/signUp')
                             $location.path('/signUp');
+                        if ($location.path() === '/confirm')
+                            $location.path('/confirm');
                         else
                             $location.path('/login');
                         return $q.reject(response);
@@ -34,22 +36,22 @@ angular.module('senta-app', ["ui.router", "oc.lazyLoad", "senta-overview", "sent
         $httpProvider.interceptors.push('authHttpInterceptor');
     }])
     .run(function ($rootScope, $state, $cookies, $location) {
+
         $rootScope.notLoginState = false;
+
         $rootScope.$on('$stateChangeStart', function (event, nextState, toParam, currentState) {
 
-            if ((!$cookies.get('token')) && (nextState.name != 'login' && nextState.name != 'signUp')) {
+            if ((!$cookies.get('token')) && (nextState.name != 'login' && nextState.name != 'signUp' && nextState.name != 'confirm')) {
                 $rootScope.notLoginState = false;
-//                event.preventDefault();
-//                $state.go('login');
                 $location.path('/login');
                 $state.go('login');
             }
-            else if (nextState.name == 'login' || nextState.name == 'signUp') {
-//                event.preventDefault();
+            else if (nextState.name == 'login' || nextState.name == 'signUp' || nextState.name == 'confirm') {
+
                 $rootScope.notLoginState = false;
             }
             else {
-//                event.preventDefault();
+
                 $rootScope.currentUser = {name: $cookies.get('currentUserName')};
                 $rootScope.notLoginState = true;
             }
